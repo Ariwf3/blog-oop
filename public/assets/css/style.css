@@ -47,6 +47,9 @@ a {
     color : darkred;
 }
 
+span.red {
+    color : red;
+}
 
 /*** HEADER ***/
 
@@ -54,14 +57,19 @@ header {
     text-align: center;
     background-color: #01a2a6;
 }
+h1>a {
+    color: black;
+}
 header li {
     padding:  0.9rem;
 }
-header a {
+
+
+/** NAV **/
+nav a {
     color : black;
     font-size: 2rem;
 }
-
 
 /*** MAIN ***/
 main {
@@ -85,6 +93,15 @@ article {
 article>h3 {
     background: black;
     color: white;
+}
+
+div.error h3 {
+    color: red;
+}
+img.error_img {
+    width : 35%;
+    border: 2px solid cadetblue;
+    border-radius: 50%;
 }
 
 /*** FOOTER ***/

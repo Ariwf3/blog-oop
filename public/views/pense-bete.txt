@@ -3,4 +3,8 @@
 <i class="fas fa-cogs"></i>  rouage por zone admin
 <i class="fas fa-coffee"></i>   café
 
+Relire chapitre sur les classes (diviser classe Autoloader classe trop longue ?)
+
+Gérer le cas de l'erreur non attrapée
+
 

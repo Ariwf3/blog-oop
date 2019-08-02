@@ -5,8 +5,16 @@ $title = "Erreur-Le café du Dev";
 ob_start(); ?>
 
 <h2>Oops Une erreur est survenue !</h2>
-<div>
-    <img src="public/assets/img/<?=$errorImg?>.jpg" alt="">
+<div class='error'>
+    <h3><?=$errorTitle?></h3>
+    <img src="public/assets/img/<?=$errorImg?>.jpg" alt="image erreur" class="error_img">
+    <?php 
+    if(isset($errorMessage)): ?>
+    <p><?= $errorMessage ?></p>
+    <?php endif ?>
+    
+    
+    
 </div>
 
 <?php
