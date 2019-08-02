@@ -5,16 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?></title>
-    <link rel="stylesheet" href="public/assets/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lacquer|Open+Sans|Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="public/assets/css/style.css">
     <script src="https://kit.fontawesome.com/635a5e5829.js"></script>
 </head>
 <body>
     <header>
         <h1><i class="fas fa-mug-hot"></i> Le café du DEV <i class="fas fa-chalkboard-teacher"></i></h1>
+        <nav>
+            <ul>
+                <li><a href=""><i class="fas fa-door-closed"></i> Connexion</a></li>
+                <li><a href=""><i class="fas fa-handshake"></i> Inscription</a></li>
+            </ul>
+        </nav>
     </header>
-    <main>
+    <main class='container'>
         <?= $content ?>
     </main>
+    <footer>
+    <small> <em>&copy le café du Dev réalisé avec douceur et <span>caféine</span></em>  </small>
+    </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="public/assets/js/script.js"></script>
 </body>

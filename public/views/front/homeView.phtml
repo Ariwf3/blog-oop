@@ -2,4 +2,29 @@
 
 $title = "Accueil-Le café du Dev";
 
-require 'public/views/template.phtml';
+ob_start(); ?>
+
+<h2><i class="fab fa-hotjar"></i> Les derniers billets :</h2>
+
+<article>
+    <h3>Titre</h3>
+    <p>post</p>
+    <div>
+        <h4><i class="fas fa-comment"></i> Derniers commentaires</h4>
+        <p>Extrait de comm...</p>
+    </div>
+    <a href="">Voir ou ajouter un commentaire</a>
+</article>
+<article>
+    <h3>Titre long pour tester</h3>
+    <p>post</p>
+    <div>
+        <h4>Derniers commentaires</h4>
+        <p>Extrait de comm...</p>
+    </div>
+    <a href="">Voir ou ajouter un commentaire</a>
+</article>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require 'public/views/template.phtml'; ?>

@@ -1,0 +1,6 @@
+"fas fa-door-open"  porte ouverte pour ma deconnexion
+<i class="fas fa-comment"></i>   bulle commentaire
+<i class="fas fa-cogs"></i>  rouage por zone admin
+<i class="fas fa-coffee"></i>   café
+
+

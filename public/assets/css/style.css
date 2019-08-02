@@ -1,0 +1,113 @@
+/* MOBILE FIRST */
+
+/* COMMUN */
+html {
+    font-size: 62.5%
+    }
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+    background-image: url('../img/fond.png');
+    background-repeat: repeat-x;
+}
+h1 {
+    font-family: 'Lacquer', sans-serif;
+    color : black;
+    margin: 0;
+    padding: 1rem;
+    font-size: 5rem;
+}
+h2 {
+    font-size: 3rem;
+}
+h2,h3,h4 {
+    font-family: 'Pacifico', cursive;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    padding-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.fa-hotjar, .fa-comment {
+    color : darkred;
+}
+
+
+/*** HEADER ***/
+
+header {
+    text-align: center;
+    background-color: #01a2a6;
+}
+header li {
+    padding:  0.9rem;
+}
+header a {
+    color : black;
+    font-size: 2rem;
+}
+
+
+/*** MAIN ***/
+main {
+    text-align: center;
+}
+
+main a {
+    display : block; 
+    padding-bottom: 1rem;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+article {
+    background: cadetblue;
+}
+
+article>h3 {
+    background: black;
+    color: white;
+}
+
+/*** FOOTER ***/
+footer {
+    color : white;
+    text-align: center;
+    background-color: #01a2a6;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+
+
+/* DESKTOP */
+@media screen and (min-width: 768px) {
+
+nav>ul {
+    display: flex;
+    justify-content: flex-end;
+}
+
+footer {
+    text-align: left;
+}
+} /* fin queries desktop */
+
