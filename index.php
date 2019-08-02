@@ -11,7 +11,9 @@ $homeController = new HomeController();
 $errorController = new ErrorController();
 
 if( isset($_GET['page']) ) {
-    switch ($_GET['page']) {
+    $page = $_GET['page'];
+
+    switch ($page) {
         case 'home':
             $homeController->renderView();
             break;
@@ -20,7 +22,7 @@ if( isset($_GET['page']) ) {
             break;
         
         default: 
-            $homeController->renderView();
+            $errorController->renderView('404');
             break;
     }
 } else {

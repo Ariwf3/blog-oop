@@ -4,7 +4,10 @@ $title = "Erreur-Le café du Dev";
 
 ob_start(); ?>
 
-<p>test test</p>
+<h2>Oops Une erreur est survenue !</h2>
+<div>
+    <img src="public/assets/img/<?=$errorImg?>.jpg" alt="">
+</div>
 
 <?php
 $content = ob_get_clean(); 
