@@ -4,15 +4,21 @@ namespace Ariwf3\Blog_oop\Application\Classes;
 
 class Autoloader {
 
-    const FRONT_CONTROLLER_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Front\\Controllers';
-    const FRONT_CONTROLLER_DIRECTORY = 'application/front/controllers/';
-    const FRONT_MODEL_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Front\\Models';
-    const FRONT_MODEL_DIRECTORY = 'application/front/models/';
+    const CONTROLLER_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Controllers';
+    const CONTROLLER_DIRECTORY = 'application/controllers/';
 
-    const BACK_CONTROLLER_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Back\\Controllers';
-    const BACK_CONTROLLER_DIRECTORY = 'application/back/controllers/';
-    const BACK_MODEL_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Back\\Models';
-    const BACK_MODEL_DIRECTORY = 'application/back/models/';
+    const CONTROLLER_FRONT_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Controllers\\Front';
+    const CONTROLLER_FRONT_DIRECTORY = 'application/controllers/front/';
+
+    const MODEL_FRONT_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Models\\Front';
+    const MODEL_FRONT_DIRECTORY = 'application/models/front/';
+
+    const CONTROLLER_BACK_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Controllers\\Back';
+    const CONTROLLER_BACK_DIRECTORY = 'application/controllers/back/';
+    
+    const MODEL_BACK_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Models\\Back';
+    const MODEL_BACK_DIRECTORY = 'application/models//back';
+
 
     const EXCEPTIONS_NAMESPACE = __NAMESPACE__ . '\\Exceptions';
     const EXCEPTIONS_DIRECTORY = 'application/classes/exceptions/';
@@ -32,22 +38,26 @@ class Autoloader {
 
         $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
 
-        if (substr($class, -15) === 'FrontController') {
-            $class = str_replace(SELF::FRONT_CONTROLLER_NAMESPACE, "", $class);
-            require_once SELF::FRONT_CONTROLLER_DIRECTORY . $class . '.php';
-        } 
+        if (substr($class, -10) === 'Controller') {
+            $class = str_replace(SELF::CONTROLLER_NAMESPACE, "", $class);
+            require_once SELF::CONTROLLER_DIRECTORY . $class . '.php';
+            
+        } else if (substr($class, -15) === 'FrontController') {
+            $class = str_replace(SELF::CONTROLLER_FRONT_NAMESPACE, "", $class);
+            require_once SELF::CONTROLLER_FRONT_DIRECTORY . $class . '.php';
+        }
         else if (substr($class, -14) === 'BackController') {
-            $class = str_replace(SELF::BACK_CONTROLLER_NAMESPACE, "", $class);
-            require_once SELF::BACK_CONTROLLER_DIRECTORY . $class . '.php'; 
+            $class = str_replace(SELF::CONTROLLER_BACK_NAMESPACE, "", $class);
+            require_once SELF::CONTROLLER_BACK_DIRECTORY . $class . '.php'; 
         } 
         else if (substr($class, -10) === 'FrontModel') {
             $class = str_replace(SELF::FRONT_MODEL_NAMESPACE, "", $class);
-            require_once SELF::FRONT_MODEL_DIRECTORY . $class . '.php';
+            require_once SELF::MODEL_FRONT_DIRECTORY . $class . '.php';
         } 
         else if (substr($class, -9) === 'BackModel') 
         {
-            $class = str_replace(SELF::BACK_MODEL_NAMESPACE, "", $class);
-            require_once SELF::BACK_MODEL_DIRECTORY . $class . '.php';
+            $class = str_replace(SELF::MODEL_BACK_NAMESPACE, "", $class);
+            require_once SELF::MODEL_BACK_DIRECTORY . $class . '.php';
         } 
         else if (substr($class, -9) === 'Exception') 
         {

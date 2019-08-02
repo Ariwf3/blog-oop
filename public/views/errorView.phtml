@@ -1,0 +1,12 @@
+<?php
+
+$title = "Erreur-Le café du Dev";
+
+ob_start(); ?>
+
+<p>test test</p>
+
+<?php
+$content = ob_get_clean(); 
+
+require 'template.phtml';

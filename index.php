@@ -2,28 +2,33 @@
 require 'application/classes/Autoloader.php';
 
 use Ariwf3\Blog_oop\Application\Classes\Autoloader;
-use Ariwf3\Blog_oop\Application\Front\Controllers\HomeFrontController;
+use Ariwf3\Blog_oop\Application\Controllers\HomeController;
+use Ariwf3\Blog_oop\Application\Controllers\ErrorController;
 Autoloader::autoload();
 
 
-$homeFrontController = new HomeFrontController();
+$homeController = new HomeController();
+$errorController = new ErrorController();
 
 if( isset($_GET['page']) ) {
     switch ($_GET['page']) {
         case 'home':
-            $homeFrontController->renderView();
+            $homeController->renderView();
+            break;
+        case 'error':
+            $errorController->renderView();
             break;
         
         default: 
-            $homeFrontController->renderView();
+            $homeController->renderView();
             break;
     }
 } else {
-    $homeFrontController->renderView();
+    $homeController->renderView();
 }
 
 /* if( isset($_GET['page']) ) {
     echo 'page';
 } else {
-    $homeFrontController->renderView();
+    $HomeController->renderView();
 } */

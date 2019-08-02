@@ -1,8 +1,8 @@
 <?php
 
-namespace Ariwf3\Blog_oop\Application\Front\Controllers;
+namespace Ariwf3\Blog_oop\Application\Controllers;
 
-class HomeFrontController {
+class HomeController {
 
     public function renderView() {
 
