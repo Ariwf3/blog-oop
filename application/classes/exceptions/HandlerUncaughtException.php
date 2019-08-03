@@ -2,15 +2,16 @@
 
 namespace Ariwf3\Blog_oop\Application\Classes\Exceptions;
 
-// require 'application/controllers/ErrorController.php';
+// use Ariwf3\Blog_oop\Application\Classes\Exceptions\HandlerUncaughtException;
 
-class HandlerUncaughtException {
+
+class HandlerUncaughtException extends \ErrorException {
 
     
     /**
-     * customException permet de personnaliser l'exception
+     * customException callback for the set_exception_handler function, customize the exception 
      *
-     * @param  mixed $e objet représentant l'exception
+     * @param  mixed $e object representing the exception
      *
      * @return void
      */
@@ -18,31 +19,18 @@ class HandlerUncaughtException {
 
         ob_start();
         ?>
-            <p><strong>Exception non attrapée lancée :</strong></p>
-            <p style="font-weight:bold">
-                <span style="color:red"><?= $e->getMessage() ?> à la ligne <?= $e->getLine() ?></span> dans le fichier <span style="color:red"><?= $e->getFile() ?></span>
-            </p>
+            <span class="error_message"><?= $e->getMessage() ?> à la ligne <u><?= $e->getLine() ?></u></span> dans le fichier <span class="error_message"><?= $e->getFile() ?></span>
         <?php
-
-        $error = ob_get_clean();
+        $errorTitle = "Exception non attrapée lancée :";
+        $errorImg = "uncaught_exception";
+        $errorDescription = ob_get_clean();
 
         require 'public/views/errorView.phtml';
         
-        /* $errorController = new \ariApplication\controllers\ErrorController();
-        $errorController->renderError($error);  */ 
     }
 
     /**
-     * dump
-     *
-     * @return void
-     */
-    public static function dump() {
-        var_dump(__CLASS__);
-    }
-    
-    /**
-     * set_exception
+     * set_exception intercepts uncaught exceptions
      *
      * @return void
      */

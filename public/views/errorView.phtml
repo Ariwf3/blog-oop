@@ -9,9 +9,10 @@ ob_start(); ?>
     <h3><?=$errorTitle?></h3>
     <img src="public/assets/img/<?=$errorImg?>.jpg" alt="image erreur" class="error_img">
     <?php 
-    if(isset($errorMessage)): ?>
-    <p><?= $errorMessage ?></p>
+    if(isset($errorDescription)): ?>
+    <p><?= $errorDescription ?></p>
     <?php endif ?>
+    <p><a href="index.php?page=home">Retourner à l'accueil</a></p>
     
     
     

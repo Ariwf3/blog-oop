@@ -47,9 +47,6 @@ a {
     color : darkred;
 }
 
-span.red {
-    color : red;
-}
 
 /*** HEADER ***/
 
@@ -95,7 +92,11 @@ article>h3 {
     color: white;
 }
 
-div.error h3 {
+/* ERROR PAGE */
+div.error {
+    font-weight: bold;
+}
+div.error h3, span.error_message {
     color: red;
 }
 img.error_img {
@@ -103,6 +104,7 @@ img.error_img {
     border: 2px solid cadetblue;
     border-radius: 50%;
 }
+
 
 /*** FOOTER ***/
 footer {
