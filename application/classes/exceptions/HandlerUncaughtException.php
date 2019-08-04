@@ -5,13 +5,13 @@ namespace Ariwf3\Blog_oop\Application\Classes\Exceptions;
 // use Ariwf3\Blog_oop\Application\Classes\Exceptions\HandlerUncaughtException;
 
 
-class HandlerUncaughtException extends \ErrorException {
+class HandlerUncaughtException {
 
     
     /**
-     * customException callback for the set_exception_handler function, customize the exception 
+     * customException callback for the set_exception_handler function, customize the exception, takes as a parameter an object representing the exception 
      *
-     * @param  mixed $e object representing the exception
+     * @param mixed $e object representing the exception
      *
      * @return void
      */
@@ -19,7 +19,7 @@ class HandlerUncaughtException extends \ErrorException {
 
         ob_start();
         ?>
-            <span class="error_message"><?= $e->getMessage() ?> à la ligne <u><?= $e->getLine() ?></u></span> dans le fichier <span class="error_message"><?= $e->getFile() ?></span>
+            <span class="error_message"><?= $e->getMessage() ?> voir la ligne <u><?= $e->getLine() ?></u></span> dans le fichier <span class="error_message"><?= $e->getFile() ?></span>
         <?php
         $errorTitle = "Exception non attrapée lancée :";
         $errorImg = "uncaught_exception";
@@ -34,7 +34,7 @@ class HandlerUncaughtException extends \ErrorException {
      *
      * @return void
      */
-    public static function set_exception() :void  {
+    public static function set_uncaught_exception() :void  {
 
         set_exception_handler(array(__CLASS__, 'customException'));
         

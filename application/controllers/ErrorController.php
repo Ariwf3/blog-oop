@@ -32,7 +32,7 @@ class ErrorController {
                 $errorDescription = $errorMessage;
                 break;
             case 'myexception':
-                $errorTitle = 'Exception de type MyException';
+                $errorTitle = 'Exception de type "MyException"';
                 $errorImg = 'general';
                 $errorDescription = $errorMessage;
                 break;

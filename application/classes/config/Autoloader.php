@@ -1,6 +1,6 @@
 <?php
 
-namespace Ariwf3\Blog_oop\Application\Classes;
+namespace Ariwf3\Blog_oop\Application\Classes\Config;
 
 class Autoloader {
 
@@ -17,14 +17,18 @@ class Autoloader {
 
     const MODEL_FRONT_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Models\\Front';
     const MODEL_FRONT_DIRECTORY = 'application/models/front/';
-    const MODEL_BACK_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Models\\Back';
-    const MODEL_BACK_DIRECTORY = 'application/models//back';
 
-    const EXCEPTION_NAMESPACE = __NAMESPACE__ . '\\Exceptions';
+    const MODEL_BACK_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Models\\Back';
+    const MODEL_BACK_DIRECTORY = 'application/models/back';
+
+    const ENTITY_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Classes\\Entity';
+    const ENTITY_DIRECTORY = 'application/classes/entity/';
+
+    const EXCEPTION_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Classes\\Exceptions';
     const EXCEPTION_DIRECTORY = 'application/classes/exceptions/';
 
-    const CLASSES_NAMESPACE = __NAMESPACE__ ;
-    const CLASSES_DIRECTORY = 'application/classes/';
+    const CONFIG_NAMESPACE = __NAMESPACE__ ;
+    const CONFIG_DIRECTORY = 'application/classes/config';
 
 
     /**
@@ -69,9 +73,15 @@ class Autoloader {
         {
             $class = str_replace(SELF::EXCEPTION_NAMESPACE, "", $class);
             require_once SELF::EXCEPTION_DIRECTORY . $class . '.php';
-        } else {
-            $class = str_replace(SELF::CLASSES_NAMESPACE, "", $class);
-            require_once SELF::CLASSES_DIRECTORY . $class. '.php';
+        }
+        else if (substr($class, -6) === 'Entity') 
+        {
+            $class = str_replace(SELF::ENTITY_NAMESPACE, "", $class);
+            require_once SELF::ENTITY_DIRECTORY . $class . '.php';
+        } 
+        else {
+            $class = str_replace(SELF::CONFIG_NAMESPACE, "", $class);
+            require_once SELF::CONFIG_DIRECTORY . $class. '.php';
         }
 
     }

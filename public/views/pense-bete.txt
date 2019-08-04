@@ -5,6 +5,5 @@
 
 Relire chapitre sur les classes (diviser classe Autoloader classe trop longue ?)
 
-Gérer le cas de l'erreur non attrapée
 
 
