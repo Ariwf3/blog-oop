@@ -2,17 +2,27 @@
 
 namespace Ariwf3\Blog_oop\Application\Controllers;
 
-use Ariwf3\Blog_oop\Application\Models\HomeModel;
+use Ariwf3\Blog_oop\Application\Models\PostModel;
+use Ariwf3\Blog_oop\Application\Models\CommentModel;
 
 class HomeController {
 
-    public function renderHome() {
+    /**
+     * renderHomeView returns the view "homeView" : Page with all last posts and their last comments
+     *
+     * @return void
+     */
+    public function renderHomeView() {
 
-        $homeModel = new HomeModel();
-        $posts = $homeModel->getPosts();
-        var_dump($posts);
+        $postModel = new PostModel();
+        $posts = $postModel->getPosts();
 
-        require 'public/views/front/homeview.phtml';
+        $commentModel = new CommentModel();
+    
+        
+        
+
+        require 'public/views/front/homeView.phtml';
     }
 
 }

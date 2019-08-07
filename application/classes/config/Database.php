@@ -37,7 +37,6 @@ class Database {
       * @return object PDOStatement
       */
 
-
      public function prepareExecute(string $sqlQuery, array $array = [])
     {
 
@@ -57,11 +56,11 @@ class Database {
 
 
     /**
-     * queryAllFetchClass
+     * queryAllFetchClass Retrieves all posts and returns them as an array of instances of the class specified using the FETCH_CLASS method
      *
      * @param  string $sqlQuery
      * @param  array|null $array
-     * @param  string $class the classname of the entity
+     * @param  string $class the classname of the entity requested
      *
      * @return array
      */

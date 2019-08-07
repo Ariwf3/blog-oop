@@ -1,0 +1,40 @@
+<?php
+
+$title = "Commentaires-Le café du Dev";
+
+ob_start(); ?>
+
+<h2><i class="fab fa-hotjar"></i> Discussion sur le sujet "<?= $post[0]->title ?>" </h2>
+<!-- POST -->
+<article class="postwithcomments">
+    <h3><?= $post[0]->title ?> <span class='author_infos'>par <span class='touppercase'><?= $post[0]->pseudo ?></span> le <?= $post[0]->creation_date->format('d-m-Y à H:i') ?></span></h3>
+    <p> <?= $post[0]->post ?> </p>
+</article>
+<!-- COMMENTAIRES -->
+<div class="comment">
+    <h2><i class="fas fa-comments"></i> Commentaires</h2>
+    
+    <?php
+    foreach($comments as $comment): ?>
+    <p><i class="fas fa-comment-dots"></i> <?= $comment->comment ?> <span class="infos_comment">par <?= $comment->author ?> le <?= $comment->creation_date->format('d-m-Y à H:i') ?></span></p>
+    <?php endforeach ?>
+
+    <form action="index.php?page=addComment&id=<?=$post[0]->post?>" method="POST">
+    <fieldset>
+        <legend><i class="fas fa-comment"></i> Participer à la discussion</legend>
+        <p>
+            <label for="author">Auteur :</label>
+            <input id="author" name="author" type="text" />
+        </p>
+        <p>
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" type="text"></textarea>
+        </p>
+    </fieldset>
+    </form>
+</div>
+
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require 'public/views/template.phtml'; ?>

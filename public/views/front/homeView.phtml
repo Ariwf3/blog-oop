@@ -8,18 +8,25 @@ ob_start(); ?>
 
 <?php
 foreach($posts as $post) :?>
+<!-- POSTS -->
 <article>
-    <h3><?= $post->title ?></h3>
-    <p><?= $post->post ?></p>
+    <h3><?= $post->title ?> <span class='author_infos'>par <span class='touppercase'><?= $post->pseudo ?></span> le <?= $post->creation_date->format('d-m-Y à H:i') ?></span></h3>
+    <p><?= $post->post ?> </p>
     <div>
-        <h4><i class="fas fa-comment"></i> Derniers commentaires</h4>
-        <p>Extrait de comm...</p>
+        <h4><i class="fas fa-comments"></i> Derniers commentaires</h4>
+
+        <!-- 4 DERNIERS COMMENTAIRES -->
+        <?php 
+        $lastComments = $commentModel->getLastComments($post->id);
+
+        foreach ($lastComments as $lastComment) : ?>
+            <p class="last_comments"><i class="fas fa-comment-dots"></i> <?= $lastComment->getExcerpt() ?> <span class="infos_comment">par <?= $lastComment->author ?> le <?= $lastComment->creation_date->format('d-m-Y à H:i') ?></span></p>
+        <?php endforeach ?>
     </div>
-    <a href="">Voir ou ajouter un commentaire</a>
+    <a href="index.php?page=comments&id=<?=$post->id?>">Voir la discussion complète ou ajouter un commentaire</a>
+
 </article>
 <?php endforeach ?>
-
-
 
 <?php $content = ob_get_clean(); ?>
 

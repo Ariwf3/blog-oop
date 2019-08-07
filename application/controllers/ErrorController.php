@@ -6,14 +6,14 @@ class ErrorController {
 
     
     /**
-     * renderError displays the error view with its information (title,message,image)
+     * renderErrorView displays the error view with its information (title,message,image)
      *
      * @param  string $errorName
      * @param  string $errorMessage
      *
      * @return void
      */
-    public function renderError(string $errorName, string $errorMessage) {
+    public function renderErrorView(string $errorName, string $errorMessage) {
         
 
         switch ($errorName) {
@@ -25,6 +25,7 @@ class ErrorController {
             case 'pdo':
                 $errorTitle = '<i class="fas fa-database"></i> Erreur base de données';
                 $errorImg = 'general';
+                $errorDescription = $errorMessage;
                 break;
             case 'invalidArgument':
                 $errorTitle = '<i class="fas fa-exclamation-circle"></i> Paramètre(s) invalide(s)';

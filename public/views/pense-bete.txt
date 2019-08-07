@@ -1,9 +1,17 @@
 "fas fa-door-open"  porte ouverte pour ma deconnexion
 <i class="fas fa-comment"></i>   bulle commentaire
+<i class="fas fa-comments"></i>  plusieurs bulles commentaires
+<i class="fas fa-comment-dots"></i> bulle petits points
 <i class="fas fa-cogs"></i>  rouage por zone admin
 <i class="fas fa-coffee"></i>   café
 
 Relire chapitre sur les classes (diviser classe Autoloader classe trop longue ?)
+
+-Faire fonctionner formulaire insérer les comm (voir trello)
+-Faire les autres vues
+
+
+
 
 
 

@@ -12,6 +12,7 @@ body {
     margin: 0;
     padding: 0;
     font-size: 1.6rem;
+    line-height: 3rem;
     background-image: url('../img/fond.png');
     background-repeat: repeat-x;
 }
@@ -32,7 +33,9 @@ img {
     max-width: 100%;
     height: auto;
 }
-
+span.touppercase {
+    text-transform: uppercase;
+}
 ul {
     list-style-type: none;
     padding: 0;
@@ -43,10 +46,17 @@ a {
     text-decoration: none;
 }
 
-.fa-hotjar, .fa-comment {
+.fa-hotjar, .fa-comments {
     color : darkred;
 }
 
+legend {
+    font-weight: bold;
+    font-style: italic;
+}
+input,textarea {
+    display: block;
+}
 
 /*** HEADER ***/
 
@@ -79,18 +89,79 @@ main a {
 }
 
 .container {
-    width: 90%;
+    width: 98%;
     margin: 0 auto;
 }
 
+/**** HOME PAGE ****/
+
+/* ARTICLE */
 article {
     background: cadetblue;
 }
 
 article>h3 {
     background: black;
-    color: white;
+    color: whitesmoke;
 }
+
+article>h3>span.author_infos {
+    /* text-align: right; */
+    font-size: 1.2rem;
+    color: cadetblue;
+}
+
+article p {
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+article div {
+    margin-bottom: 1rem;
+}
+
+p.last_comments  {
+    font-style: italic;
+}
+
+p.last_comments span {
+    color: black;
+}
+
+
+
+/**** COMMENT PAGE ****/
+
+article.postwithcomments p {
+    padding-bottom: 2rem;
+}
+div.comment {
+    text-align: left;
+}
+
+span.infos_comment {
+    display: block;
+    font-family: 'Pacifico',
+    cursive;
+    color: cadetblue;
+}
+
+/* form comment */
+input[name="author"] {
+    /* margin-left: 1.5rem; */
+    padding: 6px 9px;
+    width: 100%;
+    max-width: 50%;
+}
+textarea[name="message"] {
+    padding: 6px 9px;
+    width: 100%;
+    max-width: 50%;
+    height: 16rem;
+    min-height: 16rem;
+    line-height: 2rem;
+}
+
 
 /* ERROR PAGE */
 div.error {
@@ -106,7 +177,7 @@ img.error_img {
 }
 
 
-/*** FOOTER ***/
+/** FOOTER **/
 footer {
     color : white;
     text-align: center;
@@ -117,16 +188,25 @@ footer {
 
 
 
-/* DESKTOP */
-@media screen and (min-width: 768px) {
+/* DESKTOP MEDIA QUERIES */
+    @media screen and (min-width: 768px) {
 
-nav>ul {
-    display: flex;
-    justify-content: flex-end;
-}
 
-footer {
-    text-align: left;
-}
+    .container {
+        width: 90%;
+    }
+    nav>ul {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+
+    span.infos_comment {
+        margin-left: 2rem;
+    }
+
+    footer {
+        text-align: left;
+    }
 } /* fin queries desktop */
 
