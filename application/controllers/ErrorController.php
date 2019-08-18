@@ -4,7 +4,6 @@ namespace Ariwf3\Blog_oop\Application\Controllers;
 
 class ErrorController {
 
-    
     /**
      * renderErrorView displays the error view with its information (title,message,image)
      *
@@ -15,7 +14,6 @@ class ErrorController {
      */
     public function renderErrorView(string $errorName, string $errorMessage) {
         
-
         switch ($errorName) {
             case '404':
                 $errorTitle = '<i class="fas fa-question-circle"></i> Erreur 404 Page inexistante ou introuvable';

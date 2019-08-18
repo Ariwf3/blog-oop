@@ -50,12 +50,70 @@ a {
     color : darkred;
 }
 
+/* FORM GENERAL */
 legend {
     font-weight: bold;
     font-style: italic;
 }
 input,textarea {
     display: block;
+    margin: auto;
+}
+input[type="submit"] {
+    padding: 0.5rem 2rem;
+}
+
+input.invalid, textarea.invalid {
+    /* border : 1px solid lightsalmon; */
+    outline-color : lightsalmon;
+    /* border-color: lightsalmon; */
+}
+
+p.invalid_feedback {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin : 0;
+    color: lightsalmon;
+    font-style: italic;
+    /* max-width: 50%; */
+   
+
+}
+
+input.valid,
+textarea.valid {
+    outline-color: lightgreen;
+}
+
+p.valid_feedback {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin : 0;
+    color: forestgreen;
+    font-style: italic;
+}
+
+span.required_field {
+    font-size: 1rem;
+    color: gray;
+}
+div.popup_error_form {
+    width: 50%;
+    color : red;
+    background: lightgoldenrodyellow;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+div.popup_error_form span {
+    font-weight: bold;
+}
+.popup_valid_form {
+    width: 50%;
+    color : green;
+    background: lightgreen;
+    margin: 2rem auto;
+    padding: 1rem;
+    font-weight: bold;
 }
 
 /*** HEADER ***/
@@ -136,7 +194,7 @@ article.postwithcomments p {
     padding-bottom: 2rem;
 }
 div.comment {
-    text-align: left;
+    text-align: center;
 }
 
 span.infos_comment {
@@ -153,6 +211,7 @@ input[name="author"] {
     width: 100%;
     max-width: 50%;
 }
+
 textarea[name="message"] {
     padding: 6px 9px;
     width: 100%;
@@ -167,10 +226,13 @@ textarea[name="message"] {
 div.error {
     font-weight: bold;
 }
-div.error h3, span.error_message {
+div.error h3,
+div.error h4,
+span.error_message {
     color: red;
 }
-img.error_img {
+
+g.error_img {
     width : 35%;
     border: 2px solid cadetblue;
     border-radius: 50%;
@@ -191,6 +253,7 @@ footer {
 /* DESKTOP MEDIA QUERIES */
     @media screen and (min-width: 768px) {
 
+    /* COMMUN */
 
     .container {
         width: 90%;
@@ -200,10 +263,21 @@ footer {
         justify-content: flex-end;
     }
 
+    /* COMMENT PAGE */
+    div.comment {
+        text-align: left;
+    }
+
+    .comment fieldset {
+        text-align: center;
+    }
 
     span.infos_comment {
         margin-left: 2rem;
     }
+
+    /* form comment */
+    
 
     footer {
         text-align: left;

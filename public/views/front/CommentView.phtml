@@ -1,5 +1,8 @@
 <?php
 
+use Ariwf3\Blog_oop\Application\Controllers\Front\CommentController;
+
+
 $title = "Commentaires-Le café du Dev";
 
 ob_start(); ?>
@@ -19,18 +22,42 @@ ob_start(); ?>
     <p><i class="fas fa-comment-dots"></i> <?= $comment->comment ?> <span class="infos_comment">par <?= $comment->author ?> le <?= $comment->creation_date->format('d-m-Y à H:i') ?></span></p>
     <?php endforeach ?>
 
-    <form action="index.php?page=addComment&id=<?=$post[0]->post?>" method="POST">
-    <fieldset>
-        <legend><i class="fas fa-comment"></i> Participer à la discussion</legend>
-        <p>
-            <label for="author">Auteur :</label>
-            <input id="author" name="author" type="text" />
-        </p>
-        <p>
-            <label for="message">Message :</label>
-            <textarea id="message" name="message" type="text"></textarea>
-        </p>
-    </fieldset>
+    <form action="index.php?page=addComment&id=<?=$post[0]->id?>" method="POST" id="formComments">
+        <fieldset>
+            <legend><i class="fas fa-comment"></i> Participer à la discussion</legend>
+            <p>
+                <label for="author">Auteur :</label>
+                <input id="author" name="author" type="text" placeholder="Votre nom: * " value="<?php $value = isset($_COOKIE['author']) ? htmlentities($_COOKIE['author']) : ''; echo $value  ?>" />
+            </p>
+            <p>
+                <label for="message">Message :</label>
+            <?php
+                if (isset($_GET['error']) && $_GET['error'] == 1) : ?>
+                <textarea id="message" name="message" type="text" placeholder="Votre message: *" ><?php $value = isset($_SESSION['comments']) ? htmlentities($_SESSION['comments']['message']) : ''; echo $value ?></textarea>
+                <?php else : ?> 
+                <textarea id="message" name="message" type="text" placeholder="Votre message: *"></textarea>
+            <?php endif ?>
+            </p>
+            <span class='required_field'>* Champs obligatoires</span>
+            <input type="submit" value="Envoyer" id="send_comment">
+            <?php 
+                if (isset($_GET['error']) && $_GET['error'] == 1) : 
+                $errorsList = unserialize($_GET['errorslist']);
+            ?>
+               <div class="popup_error_form">
+                   <span>Envoi impossible veuillez vérifier les champs suivants :
+                   </span>
+                   <ul>
+                    <?php 
+                    foreach ($errorsList as $errorField) {
+                        foreach ($errorField as $error ) { ?>
+                            <li><?= $error ?></li>
+                        <?php }
+                    } ?>
+                    </ul>
+                </div>
+            <?php endif ?>
+        </fieldset>
     </form>
 </div>
 

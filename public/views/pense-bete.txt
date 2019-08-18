@@ -7,7 +7,25 @@
 
 Relire chapitre sur les classes (diviser classe Autoloader classe trop longue ?)
 
+Refactoring Autoloader et database avec cleancode (small, blocks dans les fonctions, isoler switch/if else stepdown rule et descriptive names)
+Conclusions :
+-Autoloader raccourci hérite d'une classe DIRETORY(réflechir au nom) qui contient les constantes de chemins, fonction de choix de chemin avec structure if/else cachée au niveau supérieur noms descriptifs stepdown rule appliquée
+-Database Ajout d'une méthode pour protection des variables affinement du rôle des méthodes utilisation de prepareExecute directement dans les autres méthodes avec la protection directement intégrée beaucoup de lignes en moins
+
 -Faire fonctionner formulaire insérer les comm (voir trello)
+Problème de ma fonction de protection des variables résolu c'était principalement dû à un problème de scope et de portée de mes paramètres de fonctions : Il me fallait un return du tableau de parametres, récupérer cette valeur nettoyée retournée et la passer à ma methode execute
+
+Cookie ajouté affichage uniquement s'il est définit avec ternaire
+
+
+Erreur non traitées en php probleme avec strlen? réglée avec tableaux
+
+- Refactoring de tout le js 
+Technique des objets retenue et convaincante penser à tester avec messages et comparer les deux fichiers
+renommage de toutes les variables et fonctions,ajoutd'un objet multidimensionnel pour stocker toutes les propriétés necessaires du form, bcp de lignes gagnées car plus de déclaration de variables répétitives accès à tout grâce à l'objet.
+
+-Erreurs traitées en js finir le style outline 
+-Régler histoire des caractères spéciaux en base.
 -Faire les autres vues
 
 

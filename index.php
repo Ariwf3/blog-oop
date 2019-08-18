@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'application/classes/config/Autoloader.php';
 
 use Ariwf3\Blog_oop\Application\Classes\Config\Autoloader;
@@ -29,10 +30,12 @@ try {
         
         switch ($page) {
             case 'home':
-            
+                var_dump($_COOKIE);
                 $homeController->renderHomeView();
                 break;
+
             case 'comments':
+            
                 $id = (int) $_GET['id'];
                 if ($id > 0 && isset($id)) {
                     $commentController->renderCommentView($id);
@@ -41,11 +44,20 @@ try {
                 }
                 
                 break;
-            
+
+            case 'addComment':
+                if (isset($_POST['author']) && isset($_POST['message'])) {
+                    $id = (int) $_GET['id'];
+                    $commentController->setErrors($_POST);
+                    $commentController->addComment($id, $_POST);
+                    var_dump($commentController->getErrors());
+                }   
+                break;
+
             default: 
                 $errorController->renderErrorView('404','La page <span class="error_message">"' . $page . '" </span>est inexistante');
                 break;
-        }
+        } // switch
     } else {
         $homeController->renderHomeView();
     }

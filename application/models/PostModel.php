@@ -9,17 +9,30 @@ class PostModel extends Database {
 
     CONST ENTITY_CLASSNAME = "PostsEntity";
 
-    public function getPosts()
+    /**
+     * getPosts Returns all the last 5 posts as an array of instances of the "PostEntity" entity and the user name of the "users" table
+     *
+     * @return array
+     */
+    public function getPosts() :array
     {
-        /* $sql = "SELECT post.id, user.id, post.user_id, post.title, post.post, post.creation_date, user.pseudo
+        /* jointure sans inner join $sql = "SELECT post.id, user.id, post.user_id, post.title, post.post, post.creation_date, user.pseudo
         FROM posts post, users user 
         WHERE user.id = post.user_id"; */
         $sql ="SELECT post.id, post.user_id, post.title, post.post, post.creation_date, user.pseudo FROM posts post INNER JOIN users user ON user.id = post.user_id ORDER BY post.id DESC LIMIT 0,5";
         
+        // var_dump($this->queryAllFetchClass($sql, SELF::ENTITY_CLASSNAME));
         return $this->queryAllFetchClass($sql, SELF::ENTITY_CLASSNAME);
     }
 
-    public function getOnePost($id) {
+    /**
+     * getOnePost Returns a post according to its id as an array of instances of the "PostEntity" entity and the user name of the "users" table
+     *
+     * @param int $id
+     *
+     * @return array
+     */
+    public function getOnePost(int $id) :array {
         $id = (int) $id;
         $sql = "SELECT post.id, post.user_id, post.title, post.post, post.creation_date, user.pseudo FROM posts post, users user WHERE post.id = :id AND user.id = post.user_id" ;
         $array = [
@@ -27,13 +40,5 @@ class PostModel extends Database {
         ];
         return $this->prepareExecute($sql, $array)->fetchAll(\PDO::FETCH_CLASS,'Ariwf3\Blog_oop\Application\Classes\Entity\PostsEntity');
     }
-   /*  public function getOne($id) {
-        
-        $sql = "SELECT * FROM posts WHERE id = :id";
-        $array = [
-            "id" => $id
-        ];
-        return $this->queryOneFetchAssoc($sql,$array);
-    } */
 
 }

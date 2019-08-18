@@ -10,9 +10,9 @@ class CommentModel extends Database {
     CONST ENTITY_CLASSNAME = "CommentsEntity";
 
     /**
-     * getComments Retrieves comments from a post in a "Comments" entity using the post id, returns an array of objects
+     * getComments Returns all comments of a post according to its id as an array of instances of the "CommentsEntity" entity
      *
-     * @param mixed $post_id
+     * @param int $post_id
      *
      * @return array
      */
@@ -29,7 +29,7 @@ class CommentModel extends Database {
     }
 
     /**
-     * getLastComments Retrieves the four last comments from a post in a "Comments" entity using the post id, returns an array of objects
+     * getLastComments  Returns 4 last comments of a post according to its id as an array of instances of the "CommentsEntity" entity
      *
      * @param int $post_id
      *
@@ -44,5 +44,36 @@ class CommentModel extends Database {
         $sql = "SELECT id, post_id, author, comment, creation_date FROM comments WHERE post_id = :id ORDER BY id DESC LIMIT 4";
         
         return $this->queryAllFetchClass($sql, SELF::ENTITY_CLASSNAME, $array);
+    }
+
+    public function insertComment(int $post_id, $POST) :void {
+
+        $id = (int) $post_id;
+        extract($POST);
+    
+        $array = [
+            "id" => $id,
+            "author" => $author,
+            "comment" => $message
+        ];
+
+        $sql = "INSERT INTO comments (post_id, author, comment, creation_date) 
+        VALUES (:id, :author, :comment, NOW())";
+
+        $this->pdo->beginTransaction();
+
+        try {
+
+            $this->prepareExecute($sql, $array);
+            $this->pdo->commit();
+
+        } catch (\PDOException $e) {
+
+            $this->pdo->rollback();
+            throw new \PDOException("<h4 class='error_message'>Impossible d'ajouter le commentaire, voir le message suivant :</h4> " . $e->getMessage());
+
+        }
+        
+
     }
 }

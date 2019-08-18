@@ -8,12 +8,12 @@ class Database {
     private $dataSourceName = 'mysql:host=localhost;dbname=blog_oop';
     private $databaseLogin = 'root';
     private $databasePassword = '';
-    private $errmode_utf8_fetchObj = array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
+    private $exceptionMode_utf8_fetchObjMode = array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ, \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
 
 
     public function __construct()
     {
-        $this->setPdo( new \PDO($this->dataSourceName, $this->databaseLogin,$this->databasePassword,$this->errmode_utf8_fetchObj) );   
+        $this->setPdo( new \PDO($this->dataSourceName, $this->databaseLogin,$this->databasePassword,$this->exceptionMode_utf8_fetchObjMode) );   
     }
 
     /** 
@@ -28,29 +28,51 @@ class Database {
         $this->pdo = $db_init;
     }
 
+
+    /**
+     * protectWithHtmlSpecialCharsAndTrim Protects the values and removes excess spaces of a given array with the htmlspecialchars() and trim() functions
+     *
+     * @param array $arrayParams The array that will contain the parameters to be protected
+     *
+     * @return array|null
+     */
+    public function protectWithHtmlSpecialCharsAndTrim(array $arrayParams = [])   {
+        if ( !empty($arrayParams) )
+        {
+            foreach( $arrayParams as $keys => $param )
+            {
+            
+                $arrayParams[$keys] = htmlspecialchars(trim($param));
+                // $values = htmlspecialchars(trim($values));
+                // var_dump($array);
+                // var_dump($paramsArray);
+            }
+            return $arrayParams;
+        }
+        
+    }
+
+
      /**
       * prepareExecute makes a prepared request with variable protection, returns a PDOStatement object
       *
-      * @param  string $sqlQuery
-      * @param  array $array
+      * @param  string $sqlQuery 
+      * @param  array $arrayParams The array that will contain the parameters to execute the prepared query
       *
       * @return object PDOStatement
       */
 
-     public function prepareExecute(string $sqlQuery, array $array = [])
+    
+     public function prepareExecute(string $sqlQuery, array $arrayParams = [])
     {
 
         $query = $this->pdo->prepare($sqlQuery);
 
-        if ( !empty($array) )
-        {
-            foreach( $array as $keys => $values )
-                {
-                    $values = htmlspecialchars($values);
-                }
-        }
+        $protectedArrayParams = $this->protectWithHtmlSpecialCharsAndTrim($arrayParams);
+       
+        // var_dump($protectedArrayParams);
 
-        $query->execute($array);
+        $query->execute($protectedArrayParams);
         return $query;
     }
 
@@ -59,24 +81,15 @@ class Database {
      * queryAllFetchClass Retrieves all posts and returns them as an array of instances of the class specified using the FETCH_CLASS method
      *
      * @param  string $sqlQuery
-     * @param  array|null $array
+     * @param  array|null $arrayParams The array that will contain the parameters to execute the prepared request
      * @param  string $class the classname of the entity requested
      *
      * @return array
      */
-    public function queryAllFetchClass( string $sqlQuery, $class, array $array = [] ) :array
+    public function queryAllFetchClass( string $sqlQuery, $class, array $arrayParams = [] ) :array
     {
     
-        if ( !empty($array) )
-        {
-            foreach( $array as $keys => $values )
-                {
-                    $values = htmlspecialchars($values);
-                }
-        }
-    
-        $query = $this->pdo->prepare($sqlQuery);
-        $query->execute($array);
+        $query = $this->prepareExecute($sqlQuery, $arrayParams);
 
         $entity_namespace = "Ariwf3\\Blog_oop\\Application\\Classes\\Entity";
         
@@ -87,25 +100,15 @@ class Database {
      * queryAllFetchAssoc performs a protected prepared query and returns several associative result arrays with the fetchAll() method and FETCH_ASSOC method as parameter
      *
      * @param  string $sqlQuery
-     * @param  array $array
+     * @param  array $arrayParams
      *
      * @return array
      */
-    public function queryAllFetchAssoc( string $sqlQuery, array $array = array() ) :array
+    public function queryAllFetchAssoc( string $sqlQuery, array $arrayParams = [] ) :array
     {
     
-        if ( !empty($array) )
-        {
-            foreach( $array as $keys => $values )
-                {
-                    $values = htmlspecialchars($values);
-                }
-        }
-    
-        $query = $this->pdo->prepare($sqlQuery);
-        $query->execute($array);
+        $query = $this->prepareExecute($sqlQuery, $arrayParams);
 
-        
         return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
 
@@ -113,24 +116,15 @@ class Database {
      * queryOneFetchAssoc performs a protected prepared query and returns one associative result array with the fetch() method and the FETCH_ASSOC method as parameter
      *
      * @param  string $sqlQuery
-     * @param  array $array
+     * @param  array $arrayParams The table that will contain the parameters to execute the prepared request
      *
      * @return array
      */
-    public function queryOneFetchAssoc(string $sqlQuery, array $array = array()) :array
+    public function queryOneFetchAssoc(string $sqlQuery, array $arrayParams = []) :array
     {
-        if ( !empty($array) )
-        {
-            foreach( $array as $keys => $values )
-                {
-                    $values = htmlspecialchars($values);
-                }
-        }
         
-        $query = $this->pdo->prepare($sqlQuery);
-        $query->execute($array);
+        $query = $this->prepareExecute($sqlQuery, $arrayParams);
 
-        
         return $query->fetch(\PDO::FETCH_ASSOC);
     }
 }
