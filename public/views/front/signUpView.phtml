@@ -1,0 +1,56 @@
+<?php
+
+
+$title = "Inscricption-Le café du Dev";
+
+ob_start(); ?>
+
+<form action="index.php?action=logUp&id=" method="POST" id="formSignUp">
+        <fieldset>
+            <legend><i class="fas fa-handshake"></i> S'inscrire</legend>
+            <p>
+                <label for="prenom">Nom :</label>
+                <input id="prenom" name="prenom" type="text" placeholder="Votre prénom: * " />
+            </p>
+            <p>
+                <label for="nom">Prénom :</label>
+                <input id="nom" name="nom" type="text" placeholder="Votre nom: * " />
+            </p>
+            <p>
+                <label for="email">Email :</label>
+                <input id="email" name="email" type="email" placeholder="Votre mail: * " />
+            </p>
+            <p>
+                <label for="password">Mot de passe :</label>
+                <input id="password" name="password" type="password" placeholder="Votre mot de passe: *" />
+            </p>
+            <p>
+                <label for="verif_password">Vérification Mot de passe :</label>
+                <input id="verif_password" name="verif_password" type="password" placeholder="Votre mot de passe à nouveau: *" />
+            </p>
+            <span class='required_field'>* Champs obligatoires</span>
+            <input type="submit" value="Envoyer" id="send_signUp">
+
+            <?php 
+                if (isset($_GET['error']) && $_GET['error'] == 1) : 
+                $errorsList = unserialize($_GET['errorslist']);
+            ?>
+            <div class="popup_error_form">
+                <span>Envoi impossible veuillez vérifier les champs suivants :
+                </span>
+                <ul>
+                    <?php 
+                    foreach ($errorsList as $errorField) {
+                        foreach ($errorField as $error ) { ?>
+                            <li><?= $error ?></li>
+                        <?php }
+                    } ?>
+                </ul>
+            </div>
+            <?php endif ?>
+        </fieldset>
+    </form>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require 'public/views/template.phtml'; ?>

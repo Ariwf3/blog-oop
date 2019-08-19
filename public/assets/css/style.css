@@ -59,6 +59,11 @@ input,textarea {
     display: block;
     margin: auto;
 }
+input[type="text"], input[type="password"], input[type="email"] {
+    padding: 6px 9px;
+    width: 100%;
+    max-width: 50%;
+}
 input[type="submit"] {
     padding: 0.5rem 2rem;
 }
@@ -205,12 +210,12 @@ span.infos_comment {
 }
 
 /* form comment */
-input[name="author"] {
-    /* margin-left: 1.5rem; */
+/* input[name="author"] {
+    
     padding: 6px 9px;
     width: 100%;
     max-width: 50%;
-}
+} */
 
 textarea[name="message"] {
     padding: 6px 9px;

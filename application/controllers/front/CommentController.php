@@ -2,7 +2,7 @@
 
 namespace Ariwf3\Blog_oop\Application\Controllers\Front;
 
-use Ariwf3\Blog_oop\Application\Models\PostModel;
+use Ariwf3\Blog_oop\Application\Models\postModel;
 use Ariwf3\Blog_oop\Application\Models\CommentModel;
 
 class CommentController {
@@ -11,9 +11,16 @@ class CommentController {
     private $errors = array();
 
 
-    public function setErrors(array $POST) {
+    /**
+     * setErrors Checks the integrity of user data and builds arrays with errors found
+     *
+     * @param  array $post
+     *
+     * @return void
+     */
+    public function setErrors(array $post) {
 
-        $author = htmlspecialchars( trim( $POST["author"] ) );
+        $author = htmlspecialchars( trim( $post["author"] ) );
         if (empty($author)) {
             $this->errors["author"][] = "Le nom est obligatoire";
         }
@@ -22,7 +29,7 @@ class CommentController {
             $this->errors["author"][] = "Le nom doit comporter au  moins 2 caractères";
         }
         
-        $message = htmlspecialchars( trim( $POST["message"] ) );
+        $message = htmlspecialchars( trim( $post["message"] ) );
         if (empty($message))  {
             $this->errors["message"][] = "Le message est obligatoire";
         }
@@ -33,7 +40,12 @@ class CommentController {
         
     }
 
-    public function getErrors(){
+    /**
+     * getErrors returns the errors arrays
+     *
+     * @return array
+     */
+    public function getErrors() :array {
         return $this->errors;
     }
 
@@ -46,10 +58,10 @@ class CommentController {
      */
     public function renderCommentView(int $post_id) {
 
-        $postModel = new PostModel();
+        $postModel = new postModel();
         $commentModel = new CommentModel();
 
-        $post = $postModel->getOnePost($post_id);
+        $post = $postModel->getOnepost($post_id);
         
         $comments = $commentModel->getComments($post_id);
 
@@ -71,27 +83,37 @@ class CommentController {
         setcookie($cookieId, $userData, time() + $one_year, null, null ,false, true);
     }
 
-    public function addComment(int $post_id, array $POST) {
+    /**
+     * addComment Insert the comment before redirecting if no user errors found, redirect with the error arrays in serialized form if at least one user error is found
+     *
+     * @param  int $post_id
+     * @param  array $post
+     *
+     * @return void
+     */
+    public function addComment(int $post_id, array $post) {
 
-        $id = (int) $_GET['id'];
-        $author = htmlspecialchars(trim($POST['author']));
-        $message = htmlspecialchars(trim($POST['message']));
+        $id = $post_id;
+        $author = htmlspecialchars(trim($post['author']));
+        $message = htmlspecialchars(trim($post['message']));
+        
         if ( !empty($author) && !empty($message) && count($this->getErrors()) === 0 ) {
             
             $commentModel = new CommentModel();
-            $commentModel->insertComment($post_id, $POST);
+            $commentModel->insertComment($id, $post);
             $this->setCookieOneYear('author', $author);
 
             header("Location:index.php?page=comments&id=$id");
             exit();
         } else {
-            // $_GET['error'] = 1;
+            
             $this->setCookieOneYear('author', $author);
+
             $errorsList = $this->getErrors();
-            var_dump($errorsList);
             $serializeErrorsList = serialize($errorsList);
-           $_SESSION['comments']['message'] = $message;
-           var_dump($_SESSION['comments']['message']);
+            
+            $_SESSION['comments']['message'] = $message;
+            
             header("Location:index.php?page=comments&id=$id&error=1&errorslist=$serializeErrorsList");
             exit();
         }

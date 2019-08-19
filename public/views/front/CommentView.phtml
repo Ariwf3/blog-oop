@@ -1,7 +1,5 @@
 <?php
 
-use Ariwf3\Blog_oop\Application\Controllers\Front\CommentController;
-
 
 $title = "Commentaires-Le café du Dev";
 
@@ -22,7 +20,8 @@ ob_start(); ?>
     <p><i class="fas fa-comment-dots"></i> <?= $comment->comment ?> <span class="infos_comment">par <?= $comment->author ?> le <?= $comment->creation_date->format('d-m-Y à H:i') ?></span></p>
     <?php endforeach ?>
 
-    <form action="index.php?page=addComment&id=<?=$post[0]->id?>" method="POST" id="formComments">
+<!-- FORM -->
+    <form action="index.php?action=addComment&id=<?=$post[0]->id?>" method="POST" id="formComments">
         <fieldset>
             <legend><i class="fas fa-comment"></i> Participer à la discussion</legend>
             <p>
@@ -44,18 +43,18 @@ ob_start(); ?>
                 if (isset($_GET['error']) && $_GET['error'] == 1) : 
                 $errorsList = unserialize($_GET['errorslist']);
             ?>
-               <div class="popup_error_form">
-                   <span>Envoi impossible veuillez vérifier les champs suivants :
-                   </span>
-                   <ul>
+            <div class="popup_error_form">
+                <span>Envoi impossible veuillez vérifier les champs suivants :
+                </span>
+                <ul>
                     <?php 
                     foreach ($errorsList as $errorField) {
                         foreach ($errorField as $error ) { ?>
                             <li><?= $error ?></li>
                         <?php }
                     } ?>
-                    </ul>
-                </div>
+                </ul>
+            </div>
             <?php endif ?>
         </fieldset>
     </form>

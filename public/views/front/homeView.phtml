@@ -23,7 +23,7 @@ foreach($posts as $post) :?>
             <p class="last_comments"><i class="fas fa-comment-dots"></i> <?= $lastComment->getExcerpt() ?> <span class="infos_comment">par <?= $lastComment->author ?> le <?= $lastComment->creation_date->format('d-m-Y à H:i') ?></span></p>
         <?php endforeach ?>
     </div>
-    <a href="index.php?page=comments&id=<?=$post->id?>">Voir la discussion complète ou ajouter un commentaire</a>
+    <a href="index.php?action=comments&id=<?=$post->id?>">Voir la discussion complète ou ajouter un commentaire</a>
 
 </article>
 <?php endforeach ?>

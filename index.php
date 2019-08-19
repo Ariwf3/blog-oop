@@ -10,6 +10,7 @@ use Ariwf3\Blog_oop\Application\Classes\Exceptions\MyInvalidArgumentException;
 
 use Ariwf3\Blog_oop\Application\Controllers\HomeController;
 use Ariwf3\Blog_oop\Application\Controllers\Front\CommentController;
+use Ariwf3\Blog_oop\Application\Controllers\Front\UserController;
 use Ariwf3\Blog_oop\Application\Controllers\ErrorController;
 
 Autoloader::autoload();
@@ -18,17 +19,17 @@ MyException::set_error_exception();
 
 
 try {
-    $homeController = new HomeController();
-    $errorController = new ErrorController();
-
+    $homeController    = new HomeController();
+    $errorController   = new ErrorController();
     $commentController = new CommentController();
-// strpos();
+    $userController    = new UserController();
 
 
-    if( isset($_GET['page']) ) {
-        $page = (string) $_GET['page'];
+
+    if( isset($_GET['action']) ) {
+        $action = (string) $_GET['action'];
         
-        switch ($page) {
+        switch ($action) {
             case 'home':
                 var_dump($_COOKIE);
                 $homeController->renderHomeView();
@@ -50,12 +51,19 @@ try {
                     $id = (int) $_GET['id'];
                     $commentController->setErrors($_POST);
                     $commentController->addComment($id, $_POST);
-                    var_dump($commentController->getErrors());
                 }   
                 break;
 
+            case 'signUp':
+                $userController->renderSignUpView();
+                break;
+
+            case 'signIn':
+                $userController->renderSignInView();
+                break;
+
             default: 
-                $errorController->renderErrorView('404','La page <span class="error_message">"' . $page . '" </span>est inexistante');
+                $errorController->renderErrorView('404','La page où l\'action <span class="error_message">"' . $action . '" </span>est inexistante');
                 break;
         } // switch
     } else {
