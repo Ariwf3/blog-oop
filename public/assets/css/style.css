@@ -81,7 +81,6 @@ p.invalid_feedback {
     color: lightsalmon;
     font-style: italic;
     /* max-width: 50%; */
-   
 
 }
 
@@ -111,6 +110,9 @@ div.popup_error_form {
 }
 div.popup_error_form span {
     font-weight: bold;
+}
+div.popup_error_form li {
+    padding: 1rem;
 }
 .popup_valid_form {
     width: 50%;

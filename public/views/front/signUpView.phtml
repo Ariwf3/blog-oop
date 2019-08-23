@@ -5,28 +5,32 @@ $title = "Inscricption-Le café du Dev";
 
 ob_start(); ?>
 
-<form action="index.php?action=logUp&id=" method="POST" id="formSignUp">
+<form action="index.php?action=logUp" method="POST" id="formSignUp">
         <fieldset>
             <legend><i class="fas fa-handshake"></i> S'inscrire</legend>
             <p>
-                <label for="prenom">Nom :</label>
-                <input id="prenom" name="prenom" type="text" placeholder="Votre prénom: * " />
+                <label for="lastName">Nom :</label>
+                <input id="lastName" name="lastName" type="text" placeholder="Votre nom: * " value="<?php $value = isset($_SESSION['userSignUp']) ? htmlentities($_SESSION['userSignUp']['lastName']) : ''; echo $value  ?>" />
             </p>
             <p>
-                <label for="nom">Prénom :</label>
-                <input id="nom" name="nom" type="text" placeholder="Votre nom: * " />
+                <label for="firstName">Prénom :</label>
+                <input id="firstName" name="firstName" type="text" placeholder="Votre prénom: * " value="<?php $value = isset($_SESSION['userSignUp']) ? htmlentities($_SESSION['userSignUp']['firstName']) : ''; echo $value  ?>" />
             </p>
             <p>
                 <label for="email">Email :</label>
-                <input id="email" name="email" type="email" placeholder="Votre mail: * " />
+                <input id="email" name="email" type="email" placeholder="Votre mail: * " value="<?php $value = isset($_SESSION['userSignUp']) ? htmlentities($_SESSION['userSignUp']['email']) : ''; echo $value  ?>" />
+            </p>
+            <p>
+                <label for="pseudo">Pseudo :</label>
+                <input id="pseudo" name="pseudo" type="text" placeholder="Votre pseudonyme: * " value="<?php $value = isset($_SESSION['userSignUp']) ? htmlentities($_SESSION['userSignUp']['pseudo']) : ''; echo $value  ?>" />
             </p>
             <p>
                 <label for="password">Mot de passe :</label>
                 <input id="password" name="password" type="password" placeholder="Votre mot de passe: *" />
             </p>
             <p>
-                <label for="verif_password">Vérification Mot de passe :</label>
-                <input id="verif_password" name="verif_password" type="password" placeholder="Votre mot de passe à nouveau: *" />
+                <label for="passwordCheck">Vérification Mot de passe :</label>
+                <input id="passwordCheck" name="passwordCheck" type="password" placeholder="retapez votre mot de passe: *" />
             </p>
             <span class='required_field'>* Champs obligatoires</span>
             <input type="submit" value="Envoyer" id="send_signUp">

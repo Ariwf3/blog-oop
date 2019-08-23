@@ -18,15 +18,19 @@ Problème de ma fonction de protection des variables résolu c'était principale
 Cookie ajouté affichage uniquement s'il est définit avec ternaire
 
 
-Erreur non traitées en php probleme avec strlen? réglée avec tableaux
+Erreur non traitées en php probleme avec strlen? régléeS avec tableaux
 
 - Refactoring de tout le js 
 Technique des objets retenue et convaincante penser à tester avec messages et comparer les deux fichiers
 renommage de toutes les variables et fonctions,ajoutd'un objet multidimensionnel pour stocker toutes les propriétés necessaires du form, bcp de lignes gagnées car plus de déclaration de variables répétitives accès à tout grâce à l'objet.
 
--Erreurs traitées en js finir le style outline 
--Régler histoire des caractères spéciaux en base.
--Faire les autres vues
+- Traiter les erreurs des autres vues js
+- gratter du papier pour revoir l'organisation
+- Faire les vues des comptes (mater dashboard grafikart
+)
+
+- hasher le password !!!!!!
+Refaire des verif connexion et inscription
 
 
 

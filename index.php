@@ -24,7 +24,7 @@ try {
     $commentController = new CommentController();
     $userController    = new UserController();
 
-
+    var_dump($_SESSION);
 
     if( isset($_GET['action']) ) {
         $action = (string) $_GET['action'];
@@ -32,6 +32,7 @@ try {
         switch ($action) {
             case 'home':
                 var_dump($_COOKIE);
+                var_dump($_SESSION);
                 $homeController->renderHomeView();
                 break;
 
@@ -57,9 +58,26 @@ try {
             case 'signUp':
                 $userController->renderSignUpView();
                 break;
+            case 'logUp':
+                if (isset($_POST)) {
+                    $userController->setErrors($_POST);
+                    $userController->logUp($_POST);
+                }
+                
+                break;
 
             case 'signIn':
                 $userController->renderSignInView();
+                break;
+            case 'logIn':
+                if (isset($_POST['email']) && isset($_POST['password'])) {
+                    $userController->setErrors($_POST);
+                    $userController->logIn($_POST);
+                }
+                break;
+
+            case 'logOut':
+                $userController->logOut();
                 break;
 
             default: 

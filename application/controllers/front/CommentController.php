@@ -2,7 +2,7 @@
 
 namespace Ariwf3\Blog_oop\Application\Controllers\Front;
 
-use Ariwf3\Blog_oop\Application\Models\postModel;
+use Ariwf3\Blog_oop\Application\Models\PostModel;
 use Ariwf3\Blog_oop\Application\Models\CommentModel;
 
 class CommentController {
@@ -21,6 +21,8 @@ class CommentController {
     public function setErrors(array $post) {
 
         $author = htmlspecialchars( trim( $post["author"] ) );
+        $message = htmlspecialchars( trim( $post["message"] ) );
+
         if (empty($author)) {
             $this->errors["author"][] = "Le nom est obligatoire";
         }
@@ -29,7 +31,12 @@ class CommentController {
             $this->errors["author"][] = "Le nom doit comporter au  moins 2 caractères";
         }
         
-        $message = htmlspecialchars( trim( $post["message"] ) );
+        if(!preg_match('`^[[:alnum:]]{2,30}$`',$author)) // alphanumeric characters between 2 and 30
+        { 
+           $this->errors["author"][] = "Le format du nom n'est pas correct (lettres et chiffres uniquement, 30 caractères maximum)"; 
+        } 
+        
+        
         if (empty($message))  {
             $this->errors["message"][] = "Le message est obligatoire";
         }
@@ -58,7 +65,7 @@ class CommentController {
      */
     public function renderCommentView(int $post_id) {
 
-        $postModel = new postModel();
+        $postModel = new PostModel();
         $commentModel = new CommentModel();
 
         $post = $postModel->getOnepost($post_id);
@@ -103,7 +110,7 @@ class CommentController {
             $commentModel->insertComment($id, $post);
             $this->setCookieOneYear('author', $author);
 
-            header("Location:index.php?page=comments&id=$id");
+            header("Location:index.php?action=comments&id=$id");
             exit();
         } else {
             
@@ -114,7 +121,7 @@ class CommentController {
             
             $_SESSION['comments']['message'] = $message;
             
-            header("Location:index.php?page=comments&id=$id&error=1&errorslist=$serializeErrorsList");
+            header("Location:index.php?action=comments&id=$id&error=1&errorslist=$serializeErrorsList");
             exit();
         }
         

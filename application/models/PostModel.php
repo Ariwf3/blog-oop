@@ -33,12 +33,12 @@ class PostModel extends Database {
      * @return array
      */
     public function getOnePost(int $id) :array {
-        $id = (int) $id;
+        // $id = (int) $id;
         $sql = "SELECT post.id, post.user_id, post.title, post.post, post.creation_date, user.pseudo FROM posts post, users user WHERE post.id = :id AND user.id = post.user_id" ;
-        $array = [
+        $arrayParams = [
             "id" => $id
         ];
-        return $this->prepareExecute($sql, $array)->fetchAll(\PDO::FETCH_CLASS,'Ariwf3\Blog_oop\Application\Classes\Entity\PostsEntity');
+        return $this->prepareExecute($sql, $arrayParams)->fetchAll(\PDO::FETCH_CLASS,'Ariwf3\Blog_oop\Application\Classes\Entity\PostsEntity');
     }
 
 }
