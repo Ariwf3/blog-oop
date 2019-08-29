@@ -46,7 +46,8 @@ a {
     text-decoration: none;
 }
 
-.fa-hotjar, .fa-comments {
+.fa-hotjar,
+.fa-comments, h2 .fa-user, h2 .fa-user-cogs {
     color : darkred;
 }
 
@@ -142,6 +143,10 @@ nav a {
     color : black;
     font-size: 2rem;
 }
+p.user_role {
+    font-size: 1rem;
+    font-style: italic;
+}
 
 /*** MAIN ***/
 main {
@@ -219,7 +224,7 @@ span.infos_comment {
     max-width: 50%;
 } */
 
-textarea[name="message"] {
+textarea {
     padding: 6px 9px;
     width: 100%;
     max-width: 50%;
@@ -245,6 +250,29 @@ g.error_img {
     border-radius: 50%;
 }
 
+/** ACCOUNT PAGE **/
+section.account_sections {
+    margin: 5rem 0;
+}
+span.label_infos {
+    font-weight: bold;
+}
+table {
+    margin : 0 auto;
+    text-align-last: center;
+}
+table a {
+    display: inline;
+}
+th,td {
+    padding: 1rem 1rem;
+}
+a.remove {
+    padding-left: 0.5rem;
+}
+a.edit {
+    padding-right: 0.5rem;
+}
 
 /** FOOTER **/
 footer {
@@ -269,6 +297,10 @@ footer {
         display: flex;
         justify-content: flex-end;
     }
+    p.user_role {
+        text-align: right;
+        padding-right: 2rem;
+    }
 
     /* COMMENT PAGE */
     div.comment {
@@ -283,7 +315,10 @@ footer {
         margin-left: 2rem;
     }
 
-    /* form comment */
+    /* account page */
+    /* section#user_infos {
+        text-align: left;
+    } */
     
 
     footer {

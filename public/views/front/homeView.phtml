@@ -7,6 +7,10 @@ ob_start(); ?>
 <h2><i class="fab fa-hotjar"></i> Les derniers billets :</h2>
 
 <?php
+if (empty($posts)) : ?>
+    <article><i class="far fa-frown"></i> Pas encore de billet</article>
+<?php endif; 
+
 foreach($posts as $post) :?>
 <!-- POSTS -->
 <article>

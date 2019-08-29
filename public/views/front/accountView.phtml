@@ -1,0 +1,68 @@
+<?php
+
+
+$title = "Compte-Le café du Dev";
+
+ob_start(); ?>
+
+<h2><i class="fas fa-user"></i> Mon compte</h2>
+<section id="user_infos" class="account_sections">
+    <fieldset>
+        <legend><i class="fas fa-user-secret"></i> Mes informations personnelles</legend>
+        <p>
+            <span class='label_infos'>Nom et prénom :</span> <?= $_SESSION['user']['lastName'] ." ". $_SESSION['user']['firstName'] ?>
+        
+        </p>
+        <p><span class='label_infos'>Pseudo :</span> <?= $_SESSION['user']['pseudo'] ?></p>
+        <p><span class='label_infos'>Email :</span> <?= $_SESSION['user']['email'] ?></p>
+        <p><span class='label_infos'>Rang :</span> <?= $_SESSION['user']['role'] ?></p>
+        <p><span class='label_infos'>Date inscription :</span> <?= $_SESSION['user']['datesub']->format('d-m-Y') ?></p>
+        <!-- <p><a href="#">Changer de mot de pase</a></p> -->
+    </fieldset>
+</section>
+<section id="user_posts" class="account_sections">
+    <fieldset>
+        <legend><i class="fas fa-pen-fancy"></i> Mes billets</legend>
+        <?php if(!empty($posts)) : ?> 
+    <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Post</th>
+                <th>Date de publication</th>
+                <th>Modifier/Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($posts as $post): ?>
+                <tr>
+                    <td><a href="index.php?id=<?= $post->id ?>&action=comments" target="_blank"><?= $post->title ?></a></td>
+                    <td><a href="index.php?id=<?= $post->id ?>&action=comments" target="_blank"><?= $post->getExcerpt() ?></a></td>
+                    <td><?= $post->creation_date->format("d-m-Y")  ?></td>
+                    <td>
+                        <a class="edit" href="index.php?id=<?= $post->id ?>&action=editPostView"><i class="fas fa-pencil-alt"></i></a>
+                        <a class="remove" href="index.php?id=<?= $post->id ?>&action=removePost"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+            <tr>
+                <td colspan="4"><a href='index.php?id=<?=$post->user_id?>&action=addPostView'><i class="fas fa-pen-fancy"></i> Rédiger un nouveau billet</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <?php else : ?>
+    <p><i class="far fa-frown"></i> Aucun billet écrit... N'hésitez pas à en <a href='index.php?id=<?=$_SESSION['user']['id']?>&action=addPostView'>rédiger un dès maintenant !</a></p>
+    <?php endif ?>
+    </fieldset>
+</section>
+
+<?php if ($_GET['role'] === 'admin') : ?>
+     <p>'suite'</p>
+<?php endif ?>
+
+
+
+<?php $content = ob_get_clean(); ?>
+
+
+<?php require 'public/views/template.phtml'; ?>

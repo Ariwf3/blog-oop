@@ -19,6 +19,21 @@ class PostsEntity {
         
     }
 
+     /**
+     * getExcerpt Returns a post extract with three points when the post exceeds 50 characters
+     *
+     * @return string
+     */
+    public function getExcerpt() :string {
+
+        if (strlen(substr($this->post,0,50)) >= 50) {
+             return substr($this->post,0,50) . "...";
+        } else {
+            return substr($this->post,0,50);
+        }
+        
+    }
+
 
 }
 

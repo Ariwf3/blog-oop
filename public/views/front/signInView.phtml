@@ -13,11 +13,11 @@ ob_start(); ?>
 
                 <?php if (isset($_GET['error']) && $_GET['error'] == 1) : ?>
 
-                <input id="email" name="email" type="email" placeholder="Votre mail: * " value="<?php $value = isset($_COOKIE['email']) ? htmlentities($_COOKIE['email']) : ''; echo $value  ?>" />
+                <input id="email" name="emailSignIn" type="email" placeholder="Votre mail: * " value="<?php $value = isset($_COOKIE['email']) ? htmlentities($_COOKIE['email']) : ''; echo $value  ?>" />
 
                 <?php else : ?>
 
-                <input id="email" name="email" type="email" placeholder="Votre mail: * " value ="<?php $value = isset($_COOKIE['author']) ? htmlentities($_COOKIE['email']) : ''; echo $value  ?>" />
+                <input id="email" name="emailSignIn" type="email" placeholder="Votre mail: * " value ="<?php $value = isset($_COOKIE['author']) ? htmlentities($_COOKIE['email']) : ''; echo $value  ?>" />
 
                 <?php endif ?>
             </p>

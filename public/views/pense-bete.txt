@@ -2,6 +2,10 @@
 <i class="fas fa-comment"></i>   bulle commentaire
 <i class="fas fa-comments"></i>  plusieurs bulles commentaires
 <i class="fas fa-comment-dots"></i> bulle petits points
+<i class="fas fa-user"></i>  compte utilisateur
+<i class="fas fa-user-cog"></i> compte utilisateur rouages
+<i class="fas fa-user-secret"></i>
+
 <i class="fas fa-cogs"></i>  rouage por zone admin
 <i class="fas fa-coffee"></i>   café
 
@@ -24,13 +28,17 @@ Erreur non traitées en php probleme avec strlen? régléeS avec tableaux
 Technique des objets retenue et convaincante penser à tester avec messages et comparer les deux fichiers
 renommage de toutes les variables et fonctions,ajoutd'un objet multidimensionnel pour stocker toutes les propriétés necessaires du form, bcp de lignes gagnées car plus de déclaration de variables répétitives accès à tout grâce à l'objet.
 
-- Traiter les erreurs des autres vues js
-- gratter du papier pour revoir l'organisation
-- Faire les vues des comptes (mater dashboard grafikart
-)
+- gratter du papier pour revoir l'organisation FAIT
 
-- hasher le password !!!!!!
-Refaire des verif connexion et inscription
+
+- hasher le password !!!!!! Fait
+
+Probleme quand le mail de login est incorrect à voir. FAIT
+Refaire des verif connexion et inscription A finir FAIT
+Revoir les contrôles serveur pour le nom A Revoir
+
+
+Presque bon js et erreurs traités ajouter le reste admin
 
 
 

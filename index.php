@@ -69,10 +69,58 @@ try {
             case 'signIn':
                 $userController->renderSignInView();
                 break;
+
             case 'logIn':
-                if (isset($_POST['email']) && isset($_POST['password'])) {
+                if (isset($_POST['emailSignIn']) && isset($_POST['password'])) {
                     $userController->setErrors($_POST);
                     $userController->logIn($_POST);
+                } 
+                break;
+
+            case 'account':
+                    $userController->renderAccountView();
+                    break;
+
+            case 'addPostView':
+                    $userController->renderAddPostView();
+                    break;
+
+            case 'addPost':
+                $id = (int) $_GET['id'];
+                if ( isset($id) && $id > 0 ) {
+                    $userController->setErrors($_POST);
+                    $userController->addPost($id, $_POST);
+                } else {
+                    throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
+                }
+                
+                break;
+
+            case 'editPostView':
+                    $id = (int) $_GET['id'];
+                    if ( isset($id) && $id > 0 ) {
+                    $userController->renderEditPostView($id);
+                    } else {
+                    throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
+                    }
+                break;
+
+            case 'editPost':
+                $id = (int) $_GET['id'];
+                if ( isset($id) && $id > 0 ) {
+                    $userController->setErrors($_POST);
+                    $userController->editPost($id, $_POST);
+                    } else {
+                    throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
+                }
+                break;
+
+            case 'removePost':
+                $id = (int) $_GET['id'];
+                if ( isset($id) && $id > 0 ) {
+                    $userController->removePost($id);
+                    } else {
+                    throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
                 }
                 break;
 

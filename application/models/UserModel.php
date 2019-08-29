@@ -11,6 +11,7 @@ class UserModel extends Database {
 
     public function insertUser($post) {
 
+        $hashedPassword = password_hash($post['password'],PASSWORD_DEFAULT,['cost' => 12]);
 
         $sql = "INSERT INTO users (firstname, lastname, email, role, pseudo, password, subscription_date) 
         VALUES (:firstname, :lastname, :email, 'user', :pseudo, :password, NOW())";
@@ -18,9 +19,9 @@ class UserModel extends Database {
         $array = [
             "firstname" => $post['firstName'],
             "lastname" => $post['lastName'],
-            "email" => $post['email'],
+            "email" => $post['emailSignUp'],
             "pseudo" => $post['pseudo'],
-            "password" => $post['password'],
+            "password" => $hashedPassword
         ];
 
         $this->pdo->beginTransaction();

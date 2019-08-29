@@ -24,6 +24,17 @@ $(function () {
 
     $signInInputEmail.on("keyup", ariwf3_blogoop_eventsSignIn.checkEmailOnKeyup);
     $signInInputPassword.on("keyup", ariwf3_blogoop_eventsSignIn.checkPasswordOnKeyup);
+
+    /* ADDPOST & EDITPOST FORMS */
+    let $addOrEditPostTitleInput = $("#title");
+    let $addOrEditPostTextarea = $("#post");
+
+    $addOrEditPostTitleInput.on("keyup", ariwf3_blogoop_eventsPost.checkTitleOnKeyup);
+    $addOrEditPostTextarea.on('keyup', ariwf3_blogoop_eventsPost.checkPostOnKeyup);
+
+
+
+    //ariwf3_blogoop_eventsPost
     
 
 

@@ -18,7 +18,7 @@ ob_start(); ?>
             </p>
             <p>
                 <label for="email">Email :</label>
-                <input id="email" name="email" type="email" placeholder="Votre mail: * " value="<?php $value = isset($_SESSION['userSignUp']) ? htmlentities($_SESSION['userSignUp']['email']) : ''; echo $value  ?>" />
+                <input id="email" name="emailSignUp" type="email" placeholder="Votre mail: * " value="<?php $value = isset($_SESSION['userSignUp']) ? htmlentities($_SESSION['userSignUp']['email']) : ''; echo $value  ?>" />
             </p>
             <p>
                 <label for="pseudo">Pseudo :</label>
