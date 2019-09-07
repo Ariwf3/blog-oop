@@ -295,10 +295,60 @@ a.remove {
 a.edit {
     padding-right: 0.5rem;
 }
-/* section user_list */
-/* section#user_list td {
-    
-} */
+
+
+/* SECTION USER_POSTS TABLE */
+th#updatePost_th {
+    display: flex;
+    flex-direction: column;
+}
+span#updatePost_separator {
+    display: none;
+}
+#userPostsDate_th, .userPostsDate_td {
+    display: none;
+}
+
+/* SECTION USER_ALL_POSTS TABLE */
+#listAllPosts_th, .listAllPosts_td {
+    display: none;
+}
+#listAllPostsDate_th, .listAllPostsDate_td {
+    display: none;
+}
+
+
+/* SECTION USER_LIST TABLE */
+#user_list th,td {
+    padding: 0;
+}
+
+#userListDate_th, .userListDate_td {
+    display: none;
+}
+
+/* user_list firstname/lastname */
+#userListNames_th, .userListNames_td {
+    display: none;
+}
+span#userListNames_separator {
+    display: none;
+}
+
+th#userListMail_th {
+    padding: 2rem;
+}
+td.userListMail_td {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+    word-break: break-word;
+    padding: 1rem;
+}
+
+
 /* form user */
 #user_form {
     margin: 0 auto;
@@ -402,11 +452,57 @@ small:last-child {
         margin-left: 2rem;
     }
 
-    /* account page */
-    /* section#user_infos {
-        text-align: left;
-    } */
+    /* ACCOUNT PAGE */
+
+    /* SECTION USER_POSTS TABLE */
+    #userPostsDate_th, .userPostsDate_td {
+        display: table-cell;
+    }
     
+    th#updatePost_th {
+        flex-direction: row;
+    }
+
+    span#updatePost_separator {
+        display: block;
+    }
+
+
+    /* SECTION USER_ALL_POSTS TABLE */
+    #listAllPosts_th, .listAllPosts_td {
+        display: table-cell;
+    }
+
+    #listAllPostsDate_th, .listAllPostsDate_td {
+        display: table-cell;
+    }
+
+
+
+    /* SECTION USER_LIST TABLE */
+    #user_list th,td {
+        padding: 0.5rem 0.5rem;
+    }
+
+    #userListDate_th, .userListDate_td {
+        display: table-cell;
+    }
+
+    /* user_list firstname/lastname */
+    #userListNames_th {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    /* user_list firstname/lastname */
+    .userListNames_td {
+        display: block;
+    }
+    span#userListNames_separator {
+        display: block;
+    }
+
 
     footer {
         display: flex;

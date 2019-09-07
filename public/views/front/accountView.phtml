@@ -30,8 +30,12 @@ ob_start(); ?>
                 <th>Id</th>
                 <th>Titre</th>
                 <th>Post</th>
-                <th>Date de publication</th>
-                <th>Modifier/Supprimer</th>
+                <th id="userPostsDate_th">Date de publication</th>
+                <th id="updatePost_th">
+                    <span class="updatePost_span">Modifier</span>
+                    <span id="updatePost_separator">/</span>
+                    <span class="updatePost_span">Supprimer</span>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -40,7 +44,7 @@ ob_start(); ?>
                     <td><?= $post->id ?></td>
                     <td><a href="index.php?id=<?= $post->id ?>&action=comments" target="_blank"><?= $post->title ?></a></td>
                     <td><?= $post->getExcerpt() ?></td>
-                    <td><?= $post->creation_date->format("d-m-Y")  ?></td>
+                    <td class="userPostsDate_td"><?= $post->creation_date->format("d-m-Y")  ?></td>
                     <td>
                         <a class="edit" href="index.php?id=<?= $post->id ?>&action=editPostView"><i class="fas fa-pencil-alt"></i></a>
                         <a class="remove" href="index.php?id=<?= $post->id ?>&action=removePost"><i class="fas fa-trash-alt"></i></a>
@@ -71,8 +75,8 @@ ob_start(); ?>
                 <th>Id</th>
                 <th>Auteur</th>
                 <th>Titre</th>
-                <th>Post</th>
-                <th>Date de publication</th>
+                <th id="listAllPosts_th">Post</th>
+                <th id="listAllPostsDate_th">Date de publication</th>
                 <th>Supprimer</th>
             </tr>
         </thead>
@@ -82,8 +86,8 @@ ob_start(); ?>
                     <td><?= $post->id ?></td>
                     <td><?= $post->pseudo ?></td>
                     <td><a href="index.php?id=<?= $post->id ?>&action=comments" target="_blank"><?= $post->title ?></a></td>
-                    <td><?= $post->getExcerpt() ?></td>
-                    <td><?= $post->creation_date->format("d-m-Y")  ?></td>
+                    <td class="listAllPosts_td"><?= $post->getExcerpt() ?></td>
+                    <td class="listAllPostsDate_td"><?= $post->creation_date->format("d-m-Y")  ?></td>
                     <td>
                         <a class="remove" href="index.php?id=<?= $post->id ?>&action=removePost"><i class="fas fa-trash-alt"></i></a>
                     </td>
@@ -97,7 +101,7 @@ ob_start(); ?>
     </fieldset>
     </section>
 
-
+    
     <section id="user_list" class="account_sections">
     <fieldset>
         <legend><i class="fas fa-user"></i> Utilisateurs</legend>
@@ -106,10 +110,10 @@ ob_start(); ?>
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nom/Prénom</th>
-                <th>Email</th>
+                <th id="userListNames_th"><span>Nom</span><span id="userListNames_separator">/</span><span>Prénom</span></th>
+                <th id="userListMail_th">Email</th>
                 <th>Pseudo</th>
-                <th>Date de publication</th>
+                <th id="userListDate_th">Création</th>
                 <th>Rang</th>
                 <th>Supprimer</th>
             </tr>
@@ -118,10 +122,10 @@ ob_start(); ?>
             <?php foreach($users as $user): ?>
                 <tr>
                     <td><?= $user->id ?></td>
-                    <td><?= $user->lastname ." ". $user->firstname ?></td>
-                    <td><?= $user->email ?></td>
+                    <td class="userListNames_td"><?= $user->lastname ." ". $user->firstname ?></td>
+                    <td class="userListMail_td"><?= $user->email ?></td>
                     <td><?= $user->pseudo ?></td>
-                    <td><?= $user->subscription_date->format("d-m-Y")  ?></td>
+                    <td class="userListDate_td"><?= $user->subscription_date->format("d-m-Y")  ?></td>
                     <td>
                         <form action="index.php?action=editUser&id=<?= $user->id ?>" method="POST" id="user_form">
                             <select name="role">
