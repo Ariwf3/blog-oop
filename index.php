@@ -9,14 +9,14 @@ use Ariwf3\Blog_oop\Application\Classes\Exceptions\HandlerUncaughtException;
 use Ariwf3\Blog_oop\Application\Classes\Exceptions\MyInvalidArgumentException;
 
 use Ariwf3\Blog_oop\Application\Controllers\HomeController;
-use Ariwf3\Blog_oop\Application\Controllers\Front\CommentController;
-use Ariwf3\Blog_oop\Application\Controllers\Front\AccountController;
-use Ariwf3\Blog_oop\Application\Controllers\Front\SignUpController;
-use Ariwf3\Blog_oop\Application\Controllers\Front\SignInController;
-use Ariwf3\Blog_oop\Application\Controllers\Front\SignOutController;
-use Ariwf3\Blog_oop\Application\Controllers\Front\UserController;
-use Ariwf3\Blog_oop\Application\Controllers\Front\PostController;
-use Ariwf3\Blog_oop\Application\Controllers\Front\ChatController;
+use Ariwf3\Blog_oop\Application\Controllers\CommentController;
+use Ariwf3\Blog_oop\Application\Controllers\AccountController;
+use Ariwf3\Blog_oop\Application\Controllers\SignUpController;
+use Ariwf3\Blog_oop\Application\Controllers\SignInController;
+use Ariwf3\Blog_oop\Application\Controllers\SignOutController;
+use Ariwf3\Blog_oop\Application\Controllers\UserController;
+use Ariwf3\Blog_oop\Application\Controllers\PostController;
+use Ariwf3\Blog_oop\Application\Controllers\ChatController;
 use Ariwf3\Blog_oop\Application\Controllers\ErrorController;
 
 Autoloader::autoload();
@@ -204,7 +204,6 @@ try {
                     }
 
                     break;   
-
 
             default: 
                 $errorController->renderErrorView('404','La page où l\'action <span class="error_message">"' . $action . '" </span>est inexistante');

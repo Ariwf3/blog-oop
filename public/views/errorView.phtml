@@ -7,7 +7,7 @@ ob_start(); ?>
 <h2>Oops Une erreur est survenue !</h2>
 <div class='error'>
     <h3><?=$errorTitle?></h3>
-    <img src="public/assets/img/<?=$errorImg?>.jpg" alt="image erreur" class="error_img">
+    <img src="public/assets/img/error/<?=$errorImg?>.jpg" alt="image erreur" class="error_img">
     <?php 
     if(isset($errorDescription)): ?>
     <p><?= $errorDescription ?></p>

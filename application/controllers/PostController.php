@@ -1,7 +1,7 @@
 <?php
-namespace Ariwf3\Blog_oop\Application\Controllers\Front;
+namespace Ariwf3\Blog_oop\Application\Controllers;
 use Ariwf3\Blog_oop\Application\Models\PostModel;
-use Ariwf3\Blog_oop\Application\Controllers\Front\UserController;
+use Ariwf3\Blog_oop\Application\Controllers\UserController;
 
 class PostController {
 
@@ -44,7 +44,7 @@ class PostController {
             $userController = new UserController();
             $userController->redirectIfNotConnected();
 
-            require 'public/views/front/addPostView.phtml';
+            require 'public/views/back/addPostView.phtml';
     }
 
      public function addPost(int $userId, array $post) {
@@ -82,7 +82,7 @@ class PostController {
         } else {
             $postModel = new PostModel();
             $post = $postModel->getOnepost($postId);
-            require 'public/views/front/editPostView.phtml';
+            require 'public/views/back/editPostView.phtml';
         }
     }
 

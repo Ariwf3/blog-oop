@@ -1,8 +1,8 @@
 <?php
-namespace Ariwf3\Blog_oop\Application\Controllers\Front;
+namespace Ariwf3\Blog_oop\Application\Controllers;
 
 use Ariwf3\Blog_oop\Application\Models\UserModel;
-use Ariwf3\Blog_oop\Application\Controllers\Front\UserController;
+use Ariwf3\Blog_oop\Application\Controllers\UserController;
 
 class SignInController {
 

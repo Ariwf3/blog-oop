@@ -1,5 +1,5 @@
 <?php
-namespace Ariwf3\Blog_oop\Application\Controllers\Front;
+namespace Ariwf3\Blog_oop\Application\Controllers;
 
 use Ariwf3\Blog_oop\Application\Models\UserModel;
 use Ariwf3\Blog_oop\Application\Models\PostModel;
@@ -68,7 +68,7 @@ class UserController {
        /*  if ( !isset($_SESSION['user']) && $_SESSION['user']['role'] !== 'admin') {
             header('Location:index.php'); */
             $this->redirectIfNotAdmin();
-       
+
             $userModel = new UserModel();
             $userModel->deleteUser($userId);
 
