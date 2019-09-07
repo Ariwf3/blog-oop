@@ -9,17 +9,17 @@ ob_start(); ?>
         <legend>Rédiger un billet</legend>
         <p>
             <label for="title">Titre</label>
-            <input type="text" id='title' name='title' placeholder="Titre du billet : *">
+            <input type="text" id='title' name='title' placeholder="Titre du billet : *" value="<?php $value = isset($_SESSION['userAddPost']) ? $_SESSION['userAddPost']['title'] : ''; echo $value  ?>">
         </p>
         <p>
             <label for="post"></label>
-            <textarea name="post" id="post" placeholder="Votre billet: *"></textarea>
+            <textarea name="post" id="post" placeholder="Votre billet: *"><?php $value = isset($_SESSION['userAddPost']) ? $_SESSION['userAddPost']['post'] : ''; echo $value  ?></textarea>
         </p>
         <span class='required_field'>* Champs obligatoires</span>
         <input type="submit">
         <?php 
-            if (isset($_GET['error']) && $_GET['error'] == 1) : 
-            $errorsList = unserialize($_GET['errorslist']);
+            if ( isset($_SESSION['userAddPost']['errors']) ) : 
+            $errorsList = $_SESSION['userAddPost']['errors'];
         ?>
         <div class="popup_error_form">
             <span>Envoi impossible veuillez vérifier les champs suivants :
@@ -28,7 +28,7 @@ ob_start(); ?>
                 <?php 
                 foreach ($errorsList as $errorField) {
                     foreach ($errorField as $error ) { ?>
-                        <li><?= $error ?></li>
+                        <li><?= htmlspecialchars($error) ?></li>
                     <?php }
                 } ?>
             </ul>

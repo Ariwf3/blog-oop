@@ -1,6 +1,7 @@
 /* MOBILE FIRST */
 
 /* COMMUN */
+
 html {
     font-size: 62.5%
     }
@@ -44,6 +45,20 @@ ul {
 
 a {
     text-decoration: none;
+    color : darkred;
+    font-weight: bold;
+    transition: all 0.30s;
+}
+h1 a:hover {
+    color: #2d3436;
+}
+
+a:hover {
+    color: #d63031;
+}
+
+button {
+    transition: all 0.30s;
 }
 
 .fa-hotjar,
@@ -143,7 +158,8 @@ nav a {
     color : black;
     font-size: 2rem;
 }
-p.user_role {
+span.user_role {
+    display: block;
     font-size: 1rem;
     font-style: italic;
 }
@@ -244,7 +260,7 @@ span.error_message {
     color: red;
 }
 
-g.error_img {
+.error_img {
     width : 35%;
     border: 2px solid cadetblue;
     border-radius: 50%;
@@ -253,6 +269,9 @@ g.error_img {
 /** ACCOUNT PAGE **/
 section.account_sections {
     margin: 5rem 0;
+}
+.account_sections a {
+    display: inline;
 }
 span.label_infos {
     font-weight: bold;
@@ -265,13 +284,77 @@ table a {
     display: inline;
 }
 th,td {
-    padding: 1rem 1rem;
+    padding: 0.5rem 0.5rem;
+}
+td.td_newpost {
+    padding: 2.5rem;
 }
 a.remove {
     padding-left: 0.5rem;
 }
 a.edit {
     padding-right: 0.5rem;
+}
+/* section user_list */
+/* section#user_list td {
+    
+} */
+/* form user */
+#user_form {
+    margin: 0 auto;
+}
+#user_form, select {
+    font-weight: bold;
+}
+button[type="submit"]:hover {
+    color: darkred;
+}
+
+
+/** CHAT **/
+
+article#messages {
+    border-radius: 2rem;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    /* word-wrap: break-word; */
+    overflow-wrap: break-word;
+}
+article#messages>p {
+    max-width: 90%;
+    padding: 0.7rem 0;
+}
+article#messages p span {
+    padding-right: 0.6rem;
+    font-weight: bold;
+    color: darkred;
+    font-style: italic;
+}
+
+h3#title_chat {
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    text-align: center;
+    font-size: 3rem;
+    padding: 2rem;
+}
+textarea#message {
+    height: 12rem;
+    min-height: 10rem;
+}
+
+div.popup_error_chat {
+    width: 50%;
+    color: red;
+    background: lightgoldenrodyellow;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.hide {
+    display: none;
 }
 
 /** FOOTER **/
@@ -281,6 +364,10 @@ footer {
     background-color: #01a2a6;
     margin-top: 2rem;
     padding: 1rem;
+}
+
+small:last-child {
+    display: none;
 }
 
 
@@ -297,7 +384,7 @@ footer {
         display: flex;
         justify-content: flex-end;
     }
-    p.user_role {
+    span.user_role {
         text-align: right;
         padding-right: 2rem;
     }
@@ -322,7 +409,21 @@ footer {
     
 
     footer {
+        display: flex;
+        justify-content: space-between;
+    }
+    small:last-child {
+        display: block;
+    }
+    small:last-child a {
+        color: white;
+        font-weight: normal;
+    }
+
+    /** CHAT **/
+    article#messages {
         text-align: left;
     }
+
 } /* fin queries desktop */
 

@@ -32,9 +32,12 @@ $(function () {
     $addOrEditPostTitleInput.on("keyup", ariwf3_blogoop_eventsPost.checkTitleOnKeyup);
     $addOrEditPostTextarea.on('keyup', ariwf3_blogoop_eventsPost.checkPostOnKeyup);
 
+    /* CHAT FORM */
+    let $sendMessageInput = $("#send_message");
+    $sendMessageInput.on("click", ariwf3_blogoop_eventsChat.sendMessageOnClick);
 
-
-    //ariwf3_blogoop_eventsPost
+    ariwf3_blogoop_ajax.loadMessage();
+    
     
 
 

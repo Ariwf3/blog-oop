@@ -11,36 +11,37 @@
 </head>
 <body>
     <header>
-        <h1><a href='index.php?action=home'><i class="fas fa-mug-hot"></i> Le café du DEV <i class="fas fa-chalkboard-teacher"></i></a></h1>
+        <h1 id="main_title"><a href='index.php?action=home'><i class="fas fa-mug-hot"></i> Le café du DEV <i class="fas fa-chalkboard-teacher"></i></a></h1>
         <nav>
             <ul>
-            <!-- non connecté -->
+            <!-- not connected -->
             <?php if (!isset($_SESSION['user'])) : ?>
                 <li><a href="index.php?action=signIn"><i class="fas fa-door-open"></i> Connexion</a></li>
                 <li><a href="index.php?action=signUp"><i class="fas fa-handshake"></i> Inscription</a></li>
 
             <?php else : 
 
-                // utilisateur connecté
+                // admin connected
                 if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin') : ?>
-                <li><a href="index.php?action=account&role=admin&id=<?= $_SESSION['user']['id']?>"><i class="fas fa-user-cog"></i> Administration</a></li>
+                <li><a href="index.php?action=account&id=<?= $_SESSION['user']['id']?>"><i class="fas fa-user-cog"></i> Administration</a></li>
                 <li><a href="index.php?action=logOut"><i class="fas fa-door-closed"></i> Déconnexion</a></li>
 
-                <!-- admin connecté -->
+                <!-- user connected -->
                 <?php else : ?>
-                <li><a href="index.php?action=account&role=user&id=<?= $_SESSION['user']['id']?>"><i class="fas fa-user"></i> Mon compte</a></li>
+                <li><a href="index.php?action=account&id=<?= $_SESSION['user']['id']?>"><i class="fas fa-user"></i> Mon compte</a></li>
                 <li><a href="index.php?action=logOut"><i class="fas fa-door-closed"></i> Déconnexion</a></li>
                 <?php endif ?>
                 
             <?php endif ?>
+                <li><a href="index.php?action=chat"><i class="fab fa-rocketchat"></i> Discuter en direct</a></li>
             </ul>
 
-            <!-- message informatif utilisateur ou admin connecté -->
+            <!-- informative message user or admin connected -->
             <?php if ( isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin'  ) : ?>
-            <p class="user_role">Admin connecté : <?= $_SESSION['user']['pseudo'] ?> </p>
+            <span class="user_role">Admin connecté : <?= $_SESSION['user']['pseudo'] ?> </span>
             <?php endif ?>
             <?php if( isset($_SESSION['user']) && $_SESSION['user']['role'] == 'user') : ?>
-            <p class="user_role">Utilisateur connecté : <?= $_SESSION['user']['pseudo'] ?> </p>
+            <span class="user_role">Utilisateur connecté : <?= $_SESSION['user']['pseudo'] ?> </span>
             <?php endif ?>
         </nav>
     </header>
@@ -50,9 +51,12 @@
     </main>
     <footer>
     <small> <em>&copy le café du Dev réalisé avec douceur et <span>caféine</span></em>  </small>
+    <small><a href="#main_title">Haut de page</a></small>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="public/assets/js/ajax.js"></script>
     <script src="public/assets/js/events/eventsComment.js"></script>
+    <script src="public/assets/js/events/eventsChat.js"></script>
     <script src="public/assets/js/events/eventsSignUp.js"></script>
     <script src="public/assets/js/events/eventsSignIn.js"></script>
     <script src="public/assets/js/events/eventsPost.js"></script>

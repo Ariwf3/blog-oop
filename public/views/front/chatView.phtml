@@ -1,0 +1,43 @@
+<?php
+
+$title = "Accueil-Le café du Dev";
+
+ob_start() ?>
+<article id="messages">
+    
+
+<h3 id="title_chat">Bienvenue sur le chat !</h3>
+
+<?php 
+    foreach ($messages as $message) : ?>
+        <p data-id= "<?= $message->id; ?>"> 
+            <span><i class="fab fa-rocketchat"></i> <?= $message->author ?> le <?= $message->creation_date->format('d-m-Y à H:i') ?> : </span> <?= $message->message ?> 
+        </p>
+<?php endforeach ?>
+    
+</article>
+    
+    <form action="index.php?action=addMessage" method="POST" id="form_chat">
+        <fieldset>
+            <legend>Envoi message</legend>
+            <p>
+                <label for="author">Pseudo :</label>
+                <input type="text" id="author" name="author" placeholder="Entrez votre pseudo">
+            </p>
+            <p>
+            <label for="message">Message :</label>
+                <textarea id="message" name="message"></textarea>
+            </p>
+            <input type="submit" id="send_message" value="Envoyez votre message !">
+            <div class="popup_error_form hide"><span>Vous ne pouvez pas envoyer un message vide (min 5 caractères) où pseudo vide (min 2 caractères max 30 caractères)</span></div>
+            <?php if(isset( $_GET['error'] ) && $_GET['error'] == 1 ) : ?>
+            <div class="popup_error_form">
+                <span>Vous ne pouvez pas envoyer un message vide(min 5 caractères) où sans pseudo (min 2 caractères max 30)</span>
+            </div>
+            <?php endif ?>
+        </fieldset>
+    </form>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require 'public/views/template.phtml'; ?>

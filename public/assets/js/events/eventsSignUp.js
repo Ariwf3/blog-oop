@@ -24,12 +24,12 @@ const ariwf3_blogoop_eventsSignUp = {
             },
             password: {
                 field: $('#password'),
-                value: $('#password').val().trim(),
+                value: $('#password').val(),
                 feedback: $('#password').next()
             },
             passwordCheck: {
                 field: $('#passwordCheck'),
-                value: $('#passwordCheck').val().trim(),
+                value: $('#passwordCheck').val(),
                 feedback: $('#passwordCheck').next()
             },
         };

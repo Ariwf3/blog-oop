@@ -10,16 +10,7 @@ ob_start(); ?>
             <legend><i class="fas fa-door-open"></i> Se connecter</legend>
             <p>
                 <label for="email">Email :</label>
-
-                <?php if (isset($_GET['error']) && $_GET['error'] == 1) : ?>
-
-                <input id="email" name="emailSignIn" type="email" placeholder="Votre mail: * " value="<?php $value = isset($_COOKIE['email']) ? htmlentities($_COOKIE['email']) : ''; echo $value  ?>" />
-
-                <?php else : ?>
-
-                <input id="email" name="emailSignIn" type="email" placeholder="Votre mail: * " value ="<?php $value = isset($_COOKIE['author']) ? htmlentities($_COOKIE['email']) : ''; echo $value  ?>" />
-
-                <?php endif ?>
+                <input id="email" name="emailSignIn" type="email" placeholder="Votre mail: * " value="<?php $value = isset($_COOKIE['email']) ? htmlspecialchars($_COOKIE['email']) : ''; echo $value  ?>" />
             </p>
             <p>
                 <label for="password">Mot de passe :</label>
@@ -39,7 +30,7 @@ ob_start(); ?>
                     <?php 
                     foreach ($errorsList as $errorField) {
                         foreach ($errorField as $error ) { ?>
-                            <li><?= $error ?></li>
+                            <li><?= htmlspecialchars($error) ?></li>
                         <?php }
                     } ?>
                 </ul>

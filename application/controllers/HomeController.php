@@ -19,9 +19,6 @@ class HomeController {
 
         $commentModel = new CommentModel();
     
-        
-        
-
         require 'public/views/front/homeView.phtml';
     }
 

@@ -35,7 +35,7 @@ class CommentModel extends Database {
      *
      * @return array
      */
-    public function getLastComments(int $post_id) :array {
+    public function getLastCommentsBypost(int $post_id) :array {
         $id = (int) $post_id;
         $array = [
             "id" => $id
@@ -46,15 +46,15 @@ class CommentModel extends Database {
         return $this->queryAllFetchClass($sql, SELF::ENTITY_CLASSNAME, $array);
     }
 
-    public function insertComment(int $post_id, $POST) :void {
+    public function insertComment(int $post_id, array $post) :void {
 
         $id = (int) $post_id;
-        extract($POST);
+        // extract($post);
     
-        $array = [
+        $arrayParams = [
             "id" => $id,
-            "author" => $author,
-            "comment" => $message
+            "author" => $post['author'],
+            "comment" => $post['message']
         ];
 
         $sql = "INSERT INTO comments (post_id, author, comment, creation_date) 
@@ -64,7 +64,7 @@ class CommentModel extends Database {
 
         try {
 
-            $this->prepareExecute($sql, $array);
+            $this->prepareExecute($sql, $arrayParams);
             $this->pdo->commit();
 
         } catch (\PDOException $e) {

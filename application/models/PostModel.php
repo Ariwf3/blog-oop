@@ -35,7 +35,7 @@ class PostModel extends Database {
     }
 
     public function updatePost(int $postId, $post) {
-        $sql = "UPDATE posts SET  title = :title, post = :post WHERE id = :id ";
+        $sql = "UPDATE posts SET title = :title, post = :post WHERE id = :id ";
 
         $arrayParams = [
             "id" => $postId,
@@ -85,7 +85,7 @@ class PostModel extends Database {
         /* jointure sans inner join $sql = "SELECT post.id, user.id, post.user_id, post.title, post.post, post.creation_date, user.pseudo
         FROM posts post, users user 
         WHERE user.id = post.user_id"; */
-        $sql ="SELECT post.id, post.user_id, post.title, post.post, post.creation_date, user.pseudo FROM posts post INNER JOIN users user ON user.id = post.user_id ORDER BY post.id DESC LIMIT 0,5";
+        $sql ="SELECT post.id, post.user_id, post.title, post.post, post.creation_date, user.pseudo FROM posts post INNER JOIN users user ON user.id = post.user_id ORDER BY post.id DESC";
         
         // var_dump($this->queryAllFetchClass($sql, SELF::ENTITY_CLASSNAME));
         return $this->queryAllFetchClass($sql, SELF::ENTITY_CLASSNAME);

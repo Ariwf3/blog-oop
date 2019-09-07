@@ -23,10 +23,11 @@ ob_start(); ?>
 <section id="user_posts" class="account_sections">
     <fieldset>
         <legend><i class="fas fa-pen-fancy"></i> Mes billets</legend>
-        <?php if(!empty($posts)) : ?> 
+        <?php if(!empty($userPosts)) : ?> 
     <table>
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Titre</th>
                 <th>Post</th>
                 <th>Date de publication</th>
@@ -34,10 +35,11 @@ ob_start(); ?>
             </tr>
         </thead>
         <tbody>
-            <?php foreach($posts as $post): ?>
+            <?php foreach($userPosts as $post): ?>
                 <tr>
+                    <td><?= $post->id ?></td>
                     <td><a href="index.php?id=<?= $post->id ?>&action=comments" target="_blank"><?= $post->title ?></a></td>
-                    <td><a href="index.php?id=<?= $post->id ?>&action=comments" target="_blank"><?= $post->getExcerpt() ?></a></td>
+                    <td><?= $post->getExcerpt() ?></td>
                     <td><?= $post->creation_date->format("d-m-Y")  ?></td>
                     <td>
                         <a class="edit" href="index.php?id=<?= $post->id ?>&action=editPostView"><i class="fas fa-pencil-alt"></i></a>
@@ -46,20 +48,102 @@ ob_start(); ?>
                 </tr>
             <?php endforeach ?>
             <tr>
-                <td colspan="4"><a href='index.php?id=<?=$post->user_id?>&action=addPostView'><i class="fas fa-pen-fancy"></i> Rédiger un nouveau billet</a></td>
+                <td colspan="5" class="td_newpost"><a href='index.php?id=<?=$_SESSION['user']['id']?>&action=addPostView'><i class="fas fa-pen-fancy"></i> Rédiger un nouveau billet</a></td>
             </tr>
         </tbody>
     </table>
     <?php else : ?>
-    <p><i class="far fa-frown"></i> Aucun billet écrit... N'hésitez pas à en <a href='index.php?id=<?=$_SESSION['user']['id']?>&action=addPostView'>rédiger un dès maintenant !</a></p>
+    <p><i class="far fa-frown"></i> Aucun billet écrit... N'hésitez pas à en <a href='index.php?id=<?=$_SESSION['user']['id']?>&action=addPostView'>rédiger</a> dès maintenant !</p>
     <?php endif ?>
     </fieldset>
 </section>
 
-<?php if ($_GET['role'] === 'admin') : ?>
-     <p>'suite'</p>
-<?php endif ?>
+<!-- ADMIN -->
+<?php if ($_SESSION['user']['role'] === 'admin') : ?>
 
+    <section id="user_all_posts" class="account_sections">
+    <fieldset>
+        <legend><i class="fas fa-pen-fancy"></i> Billets utilisateurs</legend>
+        <?php if(!empty($posts)) : ?> 
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Auteur</th>
+                <th>Titre</th>
+                <th>Post</th>
+                <th>Date de publication</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($posts as $post): ?>
+                <tr>
+                    <td><?= $post->id ?></td>
+                    <td><?= $post->pseudo ?></td>
+                    <td><a href="index.php?id=<?= $post->id ?>&action=comments" target="_blank"><?= $post->title ?></a></td>
+                    <td><?= $post->getExcerpt() ?></td>
+                    <td><?= $post->creation_date->format("d-m-Y")  ?></td>
+                    <td>
+                        <a class="remove" href="index.php?id=<?= $post->id ?>&action=removePost"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+    <?php else : ?>
+    <p><i class="far fa-frown"></i> Aucun billet pour le moment
+    <?php endif ?>
+    </fieldset>
+    </section>
+
+
+    <section id="user_list" class="account_sections">
+    <fieldset>
+        <legend><i class="fas fa-user"></i> Utilisateurs</legend>
+        <?php if(!empty($users)) : ?> 
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom/Prénom</th>
+                <th>Email</th>
+                <th>Pseudo</th>
+                <th>Date de publication</th>
+                <th>Rang</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($users as $user): ?>
+                <tr>
+                    <td><?= $user->id ?></td>
+                    <td><?= $user->lastname ." ". $user->firstname ?></td>
+                    <td><?= $user->email ?></td>
+                    <td><?= $user->pseudo ?></td>
+                    <td><?= $user->subscription_date->format("d-m-Y")  ?></td>
+                    <td>
+                        <form action="index.php?action=editUser&id=<?= $user->id ?>" method="POST" id="user_form">
+                            <select name="role">
+                                <option value="user" <?php if($user->role === 'user') : echo 'selected'; endif ?> >Utilisateur</option>
+                                <option value="admin" <?php if($user->role === 'admin') : echo 'selected'; endif ?>>Admin</option>
+                            </select>
+                            <button type="submit"><i class="fas fa-exchange-alt" title="changer"></i></button>
+                        </form>
+                    </td>
+                    <td><a class="remove" href="index.php?id=<?= $user->id ?>&action=removeUser"><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+    <?php else : ?>
+    <p><i class="far fa-frown"></i> Aucun utilsateur inscrit pour le moment</p>
+    <?php endif ?>
+    </fieldset>
+</section>
+
+<?php endif ?>
+<!-- END ADMIN AREA -->
 
 
 <?php $content = ob_get_clean(); ?>

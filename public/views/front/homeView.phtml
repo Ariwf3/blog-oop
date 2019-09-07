@@ -21,11 +21,18 @@ foreach($posts as $post) :?>
 
         <!-- 4 DERNIERS COMMENTAIRES -->
         <?php 
-        $lastComments = $commentModel->getLastComments($post->id);
+        
+        $lastComments = $commentModel->getLastCommentsByPost($post->id);
+        if(empty($lastComments)) : ?>
+        
+        <p class="last_comments"><i class="far fa-hand-point-down"></i> Pas encore de commentaire soyez le premier ! <i class="far fa-hand-point-down"></i></p>
+
+        <?php else :
 
         foreach ($lastComments as $lastComment) : ?>
             <p class="last_comments"><i class="fas fa-comment-dots"></i> <?= $lastComment->getExcerpt() ?> <span class="infos_comment">par <?= $lastComment->author ?> le <?= $lastComment->creation_date->format('d-m-Y à H:i') ?></span></p>
         <?php endforeach ?>
+        <?php endif ?>
     </div>
     <a href="index.php?action=comments&id=<?=$post->id?>">Voir la discussion complète ou ajouter un commentaire</a>
 

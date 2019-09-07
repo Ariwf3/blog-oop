@@ -10,19 +10,19 @@ ob_start(); ?>
             <legend><i class="fas fa-handshake"></i> S'inscrire</legend>
             <p>
                 <label for="lastName">Nom :</label>
-                <input id="lastName" name="lastName" type="text" placeholder="Votre nom: * " value="<?php $value = isset($_SESSION['userSignUp']) ? htmlentities($_SESSION['userSignUp']['lastName']) : ''; echo $value  ?>" />
+                <input id="lastName" name="lastName" type="text" placeholder="Votre nom: * " value="<?php $value = isset($_SESSION['userSignUp']) ? $_SESSION['userSignUp']['lastName'] : ''; echo $value  ?>" />
             </p>
             <p>
                 <label for="firstName">Prénom :</label>
-                <input id="firstName" name="firstName" type="text" placeholder="Votre prénom: * " value="<?php $value = isset($_SESSION['userSignUp']) ? htmlentities($_SESSION['userSignUp']['firstName']) : ''; echo $value  ?>" />
+                <input id="firstName" name="firstName" type="text" placeholder="Votre prénom: * " value="<?php $value = isset($_SESSION['userSignUp']) ? $_SESSION['userSignUp']['firstName'] : ''; echo $value  ?>" />
             </p>
             <p>
                 <label for="email">Email :</label>
-                <input id="email" name="emailSignUp" type="email" placeholder="Votre mail: * " value="<?php $value = isset($_SESSION['userSignUp']) ? htmlentities($_SESSION['userSignUp']['email']) : ''; echo $value  ?>" />
+                <input id="email" name="emailSignUp" type="email" placeholder="Votre mail: * " value="<?php $value = isset($_SESSION['userSignUp']) ? $_SESSION['userSignUp']['email'] : ''; echo $value  ?>" />
             </p>
             <p>
                 <label for="pseudo">Pseudo :</label>
-                <input id="pseudo" name="pseudo" type="text" placeholder="Votre pseudonyme: * " value="<?php $value = isset($_SESSION['userSignUp']) ? htmlentities($_SESSION['userSignUp']['pseudo']) : ''; echo $value  ?>" />
+                <input id="pseudo" name="pseudo" type="text" placeholder="Votre pseudonyme: * " value="<?php $value = isset($_SESSION['userSignUp']) ? $_SESSION['userSignUp']['pseudo'] : ''; echo $value  ?>" />
             </p>
             <p>
                 <label for="password">Mot de passe :</label>
@@ -36,8 +36,8 @@ ob_start(); ?>
             <input type="submit" value="Envoyer" id="send_signUp">
 
             <?php 
-                if (isset($_GET['error']) && $_GET['error'] == 1) : 
-                $errorsList = unserialize($_GET['errorslist']);
+                if ( isset($_SESSION['userSignUp']['errors']) ) : 
+                $errorsList = $_SESSION['userSignUp']['errors'];
             ?>
             <div class="popup_error_form">
                 <span>Envoi impossible veuillez vérifier les champs suivants :

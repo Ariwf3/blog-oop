@@ -16,6 +16,7 @@ const ariwf3_blogoop_eventsComments = {
         };
         return formTags;
     },
+    regexAuthor: /^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ!?\s]{2,30}$/,
     removeErrors: function (field, feedback) {
         field.removeClass("invalid");
         feedback.remove();
@@ -32,10 +33,10 @@ const ariwf3_blogoop_eventsComments = {
     verifyAuthorValidity: function () {
         let userInfos = ariwf3_blogoop_eventsComments.getUserInfos();
 
-        if (userInfos.author.value.length === 0 || userInfos.author.value.length < 2)
+        if (!(ariwf3_blogoop_eventsComments.regexAuthor.test(userInfos.author.value)))
         {
             userInfos.author.field.addClass("invalid");
-            userInfos.author.field.parent().append("<p class='invalid_feedback'>*Entrer minimum 2 caractères</p>");
+            userInfos.author.field.parent().append("<p class='invalid_feedback'>* minimum 2 caractères, maximum 30 caractères alphanumériques</p>");
             $(".popup_valid_form").fadeOut('slow');
 
         } else {

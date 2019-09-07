@@ -1,6 +1,7 @@
 <?php
 
 namespace Ariwf3\Blog_oop\Application\Controllers\Front;
+use Ariwf3\Blog_oop\Application\Controllers\Front\UserController;
 
 use Ariwf3\Blog_oop\Application\Models\PostModel;
 use Ariwf3\Blog_oop\Application\Models\CommentModel;
@@ -12,7 +13,7 @@ class CommentController {
 
 
     /**
-     * setErrors Checks the integrity of user data and builds arrays with errors found
+     * setErrors Checks the integrity of user data and builds arrays with errors found (author, message)
      *
      * @param  array $post
      *
@@ -27,15 +28,11 @@ class CommentController {
             $this->errors["author"][] = "Le nom est obligatoire";
         }
         
-        if (strlen($author) < 2) {
-            $this->errors["author"][] = "Le nom doit comporter au  moins 2 caractères";
-        }
-        
-        if(!preg_match('`^[[:alnum:]]{2,30}$`',$author)) // alphanumeric characters between 2 and 30
+        // regex alphanumeric and accented characters, spaces between 2 and 30
+        if(!preg_match('`^[[:alnum:]áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ!?\s]{2,30}$`',$author)) 
         { 
-           $this->errors["author"][] = "Le format du nom n'est pas correct (lettres et chiffres uniquement, 30 caractères maximum)"; 
+           $this->errors["author"][] = "Le format du nom n'est pas correct (lettres et chiffres uniquement, 2 caractères minimum, 30 caractères maximum)"; 
         } 
-        
         
         if (empty($message))  {
             $this->errors["message"][] = "Le message est obligatoire";
@@ -76,20 +73,6 @@ class CommentController {
     }
 
     
-
-    /**
-     * setCookieOneYear Set a cookie for 1 year
-     *
-     * @param  string $cookieId
-     * @param  mixed $userData
-     *
-     * @return void
-     */
-    public function setCookieOneYear(string $cookieId, string $userData) {
-        $one_year =  365*24*3600;
-        setcookie($cookieId, $userData, time() + $one_year, null, null ,false, true);
-    }
-
     /**
      * addComment Insert the comment before redirecting if no user errors found, redirect with the error arrays in serialized form if at least one user error is found
      *
@@ -101,27 +84,29 @@ class CommentController {
     public function addComment(int $post_id, array $post) {
 
         $id = $post_id;
-        $author = htmlspecialchars(trim($post['author']));
-        $message = htmlspecialchars(trim($post['message']));
+        $author = trim($post['author']);
+        $message = trim($post['message']);
         
         if ( !empty($author) && !empty($message) && count($this->getErrors()) === 0 ) {
             
             $commentModel = new CommentModel();
             $commentModel->insertComment($id, $post);
-            $this->setCookieOneYear('author', $author);
+
+            $userController = new UserController();
+            $userController->setCookieOneYear('author', htmlspecialchars($author));
+            unset($_SESSION['comments']);
 
             header("Location:index.php?action=comments&id=$id");
             exit();
         } else {
             
-            $this->setCookieOneYear('author', $author);
-
-            $errorsList = $this->getErrors();
-            $serializeErrorsList = serialize($errorsList);
+            $userController = new UserController();
+            $userController->setCookieOneYear('author', htmlspecialchars($author));
             
-            $_SESSION['comments']['message'] = $message;
+            $_SESSION['comments']['message'] = htmlspecialchars($message);
+            $_SESSION['comments']['errors'] = $this->getErrors();
             
-            header("Location:index.php?action=comments&id=$id&error=1&errorslist=$serializeErrorsList");
+            header("Location:index.php?action=comments&id=$id");
             exit();
         }
         

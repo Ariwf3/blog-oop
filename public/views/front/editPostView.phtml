@@ -9,7 +9,7 @@ ob_start(); ?>
         <legend>Modifier un billet</legend>
         <p>
             <label for="title">Titre</label>
-            <input type="text" id='title' name='title' value='<?= $post[0]->title ?? "" ?>'>
+            <input type="text" id='title' name='title' value="<?= $post[0]->title ?? '' ?>"
         </p>
         <p>
             <label for="post"></label>
@@ -27,7 +27,7 @@ ob_start(); ?>
                 <?php 
                 foreach ($errorsList as $errorField) {
                     foreach ($errorField as $error ) { ?>
-                        <li><?= $error ?></li>
+                        <li><?= htmlspecialchars($error) ?></li>
                     <?php }
                 } ?>
             </ul>

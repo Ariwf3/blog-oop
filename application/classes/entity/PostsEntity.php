@@ -9,6 +9,7 @@ class PostsEntity {
     public $title;
     public $post;
     public $creation_date;
+    public $pseudo;
 
     public function __construct() {
         $this->id = (int) $this->id;

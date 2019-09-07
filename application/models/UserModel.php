@@ -39,6 +39,38 @@ class UserModel extends Database {
         }
     }
 
+    public function deleteUser(int $id) {
+        $sql = "DELETE FROM users WHERE id = :id";
+        $arrayParam = ["id" => $id];
+
+        $this->pdo->beginTransaction();
+
+        try {
+            $this->prepareExecute($sql, $arrayParam);
+            $this->pdo->commit();
+
+        } catch (\PDOException $e) {
+            $this->pdo->rollback();
+            throw new \PDOException("<h4 class='error_message'>Impossible de supprimer l'utilisateur, voir le message suivant :</h4> " . $e->getMessage());
+        }
+    }
+
+    public function updateUser(int $id, $post) {
+        $sql = "UPDATE users SET role = :role WHERE id = :id";
+        $arrayParams = ["role" => $post['role'], "id" => $id];
+
+        $this->pdo->beginTransaction();
+
+        try {
+            $this->prepareExecute($sql, $arrayParams);
+            $this->pdo->commit();
+            
+        } catch (\PDOException $e) {
+            $this->pdo->rollback();
+            throw new \PDOException("<h4 class='error_message'>Impossible de modifier le rang de l'utilisateur, voir le message suivant :</h4> " . $e->getMessage());
+        }
+    }
+
 
     public function getUsers() :array {
 
@@ -54,8 +86,9 @@ class UserModel extends Database {
         $arrayParams = [
             "id" => $id
         ];
-
+        
         return $this->queryAllFetchClass($sql, SELF::ENTITY_CLASSNAME, $arrayParams);
+        
     }
     
     public function getUserByMail($email) {
