@@ -8,6 +8,11 @@ class SignInController {
 
     private $errors = array();
 
+    /**
+     * renderSignInView returns the view "signInView" : Page with the sign in section
+     *
+     * @return void
+     */
     public function renderSignInView() {
         require 'public/views/front/signInView.phtml';
     }
@@ -60,6 +65,13 @@ class SignInController {
         return $this->errors;
     }
 
+     /**
+      * logIn Logs in if no errors found, uses the password_verify function to verify the hashed password and redirects to the index
+      *
+      * @param  array $post
+      *
+      * @return void
+      */
      public function logIn(array $post) {
 
         $email = $post['emailSignIn'];
@@ -67,17 +79,18 @@ class SignInController {
 
         if ( !empty($email) && !empty($password) && count($this->getErrors()) === 0 ) {
 
+            unset($_SESSION['userSignIn']);
             $userController = new UserController();
             $userController->setCookieOneYear('email', htmlspecialchars($email));
             
-
             $userModel = new UserModel();
             $user = $userModel->getUserByMail($email);
-            
             
             $hashedPassword = $user[0]->password;
             
             if ( password_verify($password, $hashedPassword) === true ) {
+
+            unset($_SESSION['userSignIn']);
 
             $_SESSION['user']['id'] = $user[0]->id;
             $_SESSION['user']['email'] = $user[0]->email;
@@ -96,22 +109,18 @@ class SignInController {
                 $userController->setCookieOneYear('email', htmlspecialchars($email));
 
                 $this->errors['password'][] = "Mauvais mot de passe";
-                $errorsList = $this->getErrors();
-                $serializeErrorsList = serialize($errorsList);
+                $_SESSION['userSignIn']['errors'] = $this->getErrors();
                     
-                header("Location:index.php?action=signIn&error=1&errorslist=$serializeErrorsList");
-            } 
+                header("Location:index.php?action=signIn");
+            } //end password verification
 
-        } else { //errors found we send the errors
+        } else { 
 
             $userController = new UserController();
             $userController->setCookieOneYear('email', htmlspecialchars($email));
-
-            $errorsList = $this->getErrors();
-            $serializeErrorsList = serialize($errorsList);
-            // var_dump($errorsList);
+            $_SESSION['userSignIn']['errors'] = $this->getErrors();
             
-            header("Location:index.php?action=signIn&error=1&errorslist=$serializeErrorsList");
+            header("Location:index.php?action=signIn");
             
         } // end count errors
 

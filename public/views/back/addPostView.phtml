@@ -17,6 +17,8 @@ ob_start(); ?>
         </p>
         <span class='required_field'>* Champs obligatoires</span>
         <input type="submit">
+        
+        <!-- ERRORS -->
         <?php 
             if ( isset($_SESSION['userAddPost']['errors']) ) : 
             $errorsList = $_SESSION['userAddPost']['errors'];

@@ -19,7 +19,7 @@ foreach($posts as $post) :?>
     <div>
         <h4><i class="fas fa-comments"></i> Derniers commentaires</h4>
 
-        <!-- 4 DERNIERS COMMENTAIRES -->
+        <!-- DERNIERS COMMENTAIRES -->
         <?php 
         
         $lastComments = $commentModel->getLastCommentsByPost($post->id);

@@ -34,7 +34,7 @@ ob_start(); ?>
             </p>
             <span class='required_field'>* Champs obligatoires</span>
             <input type="submit" value="Envoyer" id="send_signUp">
-
+            <!-- ERRORS -->
             <?php 
                 if ( isset($_SESSION['userSignUp']['errors']) ) : 
                 $errorsList = $_SESSION['userSignUp']['errors'];

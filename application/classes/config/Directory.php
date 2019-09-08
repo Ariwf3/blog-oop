@@ -8,22 +8,22 @@ class Directory {
     const CONTROLLER_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Controllers';
     const CONTROLLER_DIRECTORY = 'application/controllers/';
 
-    const MODEL_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Models';
-    const MODEL_DIRECTORY = 'application/models/';
+    const MODEL_NAMESPACE      = 'Ariwf3\\Blog_oop\\Application\\Models';
+    const MODEL_DIRECTORY      = 'application/models/';
 
-    const ENTITY_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Classes\\Entity';
-    const ENTITY_DIRECTORY = 'application/classes/entity/';
+    const ENTITY_NAMESPACE     = 'Ariwf3\\Blog_oop\\Application\\Classes\\Entity';
+    const ENTITY_DIRECTORY     = 'application/classes/entity/';
 
-    const EXCEPTION_NAMESPACE = 'Ariwf3\\Blog_oop\\Application\\Classes\\Exceptions';
-    const EXCEPTION_DIRECTORY = 'application/classes/exceptions/';
+    const EXCEPTION_NAMESPACE  = 'Ariwf3\\Blog_oop\\Application\\Classes\\Exceptions';
+    const EXCEPTION_DIRECTORY  = 'application/classes/exceptions/';
 
-    const CONFIG_NAMESPACE = __NAMESPACE__ ;
-    const CONFIG_DIRECTORY = 'application/classes/config';
+    const CONFIG_NAMESPACE     = __NAMESPACE__ ;
+    const CONFIG_DIRECTORY     = 'application/classes/config';
 
     /**
      * requireFileWithoutNamespace Calls a page corresponding to a class without the namespace in the class name according to the folder name
      *
-     * @param  string $class
+     * @param string $class 
      *
      * @return void
      */

@@ -8,12 +8,11 @@ class UserController {
 
     private $errors = array();
 
-
     /**
      * setCookieOneYear Set a cookie for 1 year with httpOnly mode
      *
      * @param  string $cookieId
-     * @param  mixed $userData
+     * @param  string $userData
      *
      * @return void
      */
@@ -21,8 +20,6 @@ class UserController {
         $one_year =  365*24*3600;
         setcookie($cookieId, $userData, time() + $one_year, null, null ,false, true);
     }
-
- 
 
     /**
      * redirectIfNotConnected redirects if user is not logged in 
@@ -48,8 +45,15 @@ class UserController {
         }
     }
 
-    
-    public function editUser(int $userId,$post) {
+    /**
+     * editUser edits the user according to its id and user datas $post and redirect to accountPage, redirects to index if not admin
+     *
+     * @param  int $userId
+     * @param  array $post
+     *
+     * @return void
+     */
+    public function editUser(int $userId, array $post) {
 
             $this->redirectIfNotAdmin();
 
@@ -63,6 +67,13 @@ class UserController {
         
     }
 
+    /**
+     * removeUser Deletes the user according to its id and redirects to accountPage
+     *
+     * @param  int $userId
+     *
+     * @return void
+     */
     public function removeUser(int $userId) {
 
        /*  if ( !isset($_SESSION['user']) && $_SESSION['user']['role'] !== 'admin') {

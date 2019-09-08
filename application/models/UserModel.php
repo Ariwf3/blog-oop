@@ -8,8 +8,14 @@ class UserModel extends Database {
 
     CONST ENTITY_CLASSNAME = "UsersEntity";
 
-
-    public function insertUser($post) {
+    /**
+     * insertUser Insert an user with user datas $post and hashes the password
+     *
+     * @param  array $post
+     *
+     * @return void
+     */
+    public function insertUser(array $post) {
 
         $hashedPassword = password_hash($post['password'],PASSWORD_DEFAULT,['cost' => 12]);
 
@@ -27,18 +33,21 @@ class UserModel extends Database {
         $this->pdo->beginTransaction();
 
         try {
-
             $this->prepareExecute($sql, $array);
             $this->pdo->commit();
-
         } catch (\PDOException $e) {
-
             $this->pdo->rollback();
             throw new \PDOException("<h4 class='error_message'>Impossible d'ajouter le commentaire, voir le message suivant :</h4> " . $e->getMessage());
-
         }
     }
 
+    /**
+     * deleteUser Deletes an user according to its id
+     *
+     * @param  int $id
+     *
+     * @return void
+     */
     public function deleteUser(int $id) {
         $sql = "DELETE FROM users WHERE id = :id";
         $arrayParam = ["id" => $id];
@@ -48,14 +57,21 @@ class UserModel extends Database {
         try {
             $this->prepareExecute($sql, $arrayParam);
             $this->pdo->commit();
-
         } catch (\PDOException $e) {
             $this->pdo->rollback();
             throw new \PDOException("<h4 class='error_message'>Impossible de supprimer l'utilisateur, voir le message suivant :</h4> " . $e->getMessage());
         }
     }
 
-    public function updateUser(int $id, $post) {
+    /**
+     * updateUser updates one user with user datas of the array post according to its id as parameter
+     *
+     * @param  int $id
+     * @param  array $post
+     *
+     * @return void
+     */
+    public function updateUser(int $id, array $post) {
         $sql = "UPDATE users SET role = :role WHERE id = :id";
         $arrayParams = ["role" => $post['role'], "id" => $id];
 
@@ -71,7 +87,11 @@ class UserModel extends Database {
         }
     }
 
-
+    /**
+     * getUsers Returns all users as an array of instances of the "User" entity
+     *
+     * @return array
+     */
     public function getUsers() :array {
 
         $sql = "SELECT id, firstname, lastname, email, role, pseudo, password, subscription_date FROM users ";
@@ -91,10 +111,14 @@ class UserModel extends Database {
         
     }
     
-    public function getUserByMail($email) {
-
-        // $email = $post['email'];
-        // $password = $post['password'];
+    /**
+     * getUserByMail Returns one user according to the email user
+     *
+     * @param string $email
+     *
+     * @return array
+     */
+    public function getUserByMail(string $email) :array {
 
         $sql = "SELECT id, firstname, lastname, email, role,pseudo, password, subscription_date FROM users WHERE email = :email ";
 
@@ -104,8 +128,6 @@ class UserModel extends Database {
 
         return $this->queryAllFetchClass($sql, SELF::ENTITY_CLASSNAME, $arrayParams);
 
-        
     }
-
 
 }

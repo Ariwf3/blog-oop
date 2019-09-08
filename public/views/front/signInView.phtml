@@ -18,10 +18,11 @@ ob_start(); ?>
             </p>
             <span class='required_field'>* Champs obligatoires</span>
             <input type="submit" value="Connexion" id="send_signIn">
-
+            
+            <!-- ERRORS -->
             <?php 
-                if (isset($_GET['error']) && $_GET['error'] == 1) : 
-                $errorsList = unserialize($_GET['errorslist']);
+                if ( isset($_SESSION['userSignIn']['errors']) ) : 
+                $errorsList = $_SESSION['userSignIn']['errors'];
             ?>
             <div class="popup_error_form">
                 <span>Envoi impossible veuillez vérifier les champs suivants :

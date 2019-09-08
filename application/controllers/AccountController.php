@@ -8,6 +8,11 @@ use Ariwf3\Blog_oop\Application\Models\UserModel;
 class AccountController {
 
 
+    /**
+     * renderAccountView returns the view "accountView" : Page with the account informations and actions if connected, retirects to index if not connected
+     *
+     * @return void
+     */
     public function renderAccountView() {
 
             $userController = new UserController();

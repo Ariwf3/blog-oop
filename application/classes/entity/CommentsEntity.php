@@ -10,8 +10,7 @@ class CommentsEntity {
     public $comment;
     public $creation_date;
 
-    
-     public function __construct() {
+    public function __construct() {
         $this->id = (int) $this->id;
         $this->post_id = (int) $this->post_id;
         $this->author = ucfirst($this->author);
@@ -20,16 +19,15 @@ class CommentsEntity {
         
     }
 
-    
     /**
-     * getExcerpt Returns a comment extract with three points when the comment exceeds 50 characters
+     * getExcerpt Returns a comment extract with three dots when the comment exceeds 50 characters
      *
      * @return string
      */
     public function getExcerpt() :string {
 
         if (strlen(substr($this->comment,0,50)) >= 50) {
-             return substr($this->comment,0,50) . "...";
+            return substr($this->comment,0,50) . "...";
         } else {
             return substr($this->comment,0,50);
         }

@@ -16,6 +16,8 @@ ob_start(); ?>
             <textarea name="post" id="post"><?= $post[0]->post ?? "" ?> </textarea>
         </p>
         <input type="submit">
+        
+        <!-- ERRORS -->
         <?php 
             if (isset($_GET['error']) && $_GET['error'] == 1) : 
             $errorsList = unserialize($_GET['errorslist']);

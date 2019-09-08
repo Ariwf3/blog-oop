@@ -5,7 +5,6 @@ use Ariwf3\Blog_oop\Application\Models\ChatModel;
 
 class ChatController {
 
-
     /**
      * renderChatView returns the view "chatView" : Page with the instant messaging with last messages
      *
@@ -15,9 +14,55 @@ class ChatController {
 
         $messages = $this->loadMessages();
         require 'public/views/front/chatView.phtml';
+
     }
 
-    public function AddMessageAjax(array $post) {
+    /**
+     * addMessage Adds a message with user datas $post
+     *
+     * @param  array $post
+     *
+     * @return void
+     */
+    public function addMessage(array $post) {
+        $chatModel = new ChatModel();
+        $lastMessage = $chatModel->InsertMessage($post);
+    }
+
+    
+    /**
+     * loadMessages Loads list of the messages
+     *
+     * @return array
+     */
+    public function loadMessages() :array {
+        $chatModel = new ChatModel();
+        return $chatModel->getLastTenMessages();
+    }
+
+
+    /**
+     * loadLastMessage Loads the last message according to the id($lastId) of the last message received
+     *
+     * @param  int $lastId
+     *
+     * @return array
+     */
+    public function loadLastMessage($lastId) :array {
+
+        $chatModel = new ChatModel();
+        return $chatModel->getLastMessage($lastId);  
+    
+    }
+
+    /**
+     * addMessageAjax Adds the message asynchronously thanks to the received datas $post from the ajax script, redirects in case of javascript desactivation by the user
+     *
+     * @param  array $post
+     *
+     * @return void
+     */
+    public function addMessageAjax(array $post) {
     
     $author = trim($post['author']);
     $message = trim($post['message']);
@@ -26,60 +71,29 @@ class ChatController {
     
         $this->addMessage($post);
 
-        // Redirection in case of javascript deactivation by the user
         header('location:index.php?action=chat');
         
         } else {
-            
-        // Redirection with error in case of javascript deactivation by the user
-        header('location:index.php?action=chat&error=1');
+            header('location:index.php?action=chat&error=1');
         }
     }
 
-   /*  public function loadMessageAjax(int $lastId) {
-
-        $this->loadLastMessage($lastId);
-
-    } */
-
-    public function addMessage(array $post) {
-        $chatModel = new ChatModel();
-        $lastMessage = $chatModel->InsertMessage($post);
-    }
-
-    
-    public function loadMessages() {
-        $chatModel = new ChatModel();
-        return $chatModel->getMessages();
-    }
-
-
+    /**
+     * loadMessageAjax Loads messages asynchronously thanks to the received data $lastId from the ajax script and resends datas to the script
+     *
+     * @param  int $lastId
+     *
+     * @return void
+     */
     public function loadMessageAjax(int $lastId) {
 
-        $lastMessage = $this->loadLastMessage($lastId);
+    $lastMessage = $this->loadLastMessage($lastId);
 
-        $lastMessageJson = json_encode($lastMessage);
+    $lastMessageJson = json_encode($lastMessage);
 
-        if ($lastMessage[0]['id'] > $lastId) {
+    if ($lastMessage[0]['id'] > $lastId) {
             echo $lastMessageJson;
         }
-
-    }
-
-    public function loadLastMessage($lastId) {
-
-        $chatModel = new ChatModel();
-
-        return $chatModel->getLastMessage($lastId);
-
-        // var_dump($lastMessage);
-        // $lastMessageJson = json_encode($lastMessage);
-        // var_dump($lastMessageJson);
-
-        /* if ($lastMessage[0]['id'] > $lastId) {
-            echo $lastMessageJson;
-        } */
-        
     }
 
 }

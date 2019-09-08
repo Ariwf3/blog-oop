@@ -29,6 +29,8 @@ ob_start() ?>
                 <textarea id="message" name="message"></textarea>
             </p>
             <input type="submit" id="send_message" value="Envoyez votre message !">
+            
+            <!-- ERRORS -->
             <div class="popup_error_form hide"><span>Vous ne pouvez pas envoyer un message vide (min 5 caractères) où pseudo vide (min 2 caractères max 30 caractères)</span></div>
             <?php if(isset( $_GET['error'] ) && $_GET['error'] == 1 ) : ?>
             <div class="popup_error_form">

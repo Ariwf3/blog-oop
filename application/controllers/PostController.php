@@ -40,6 +40,11 @@ class PostController {
         return $this->errors;
     }
 
+    /**
+     * renderAddPostView returns the view "addPostView" : Page with the form to add a post if connected
+     *
+     * @return void
+     */
     public function renderAddPostView() {
             $userController = new UserController();
             $userController->redirectIfNotConnected();
@@ -47,7 +52,15 @@ class PostController {
             require 'public/views/back/addPostView.phtml';
     }
 
-     public function addPost(int $userId, array $post) {
+    /**
+     * addPost adds a post with the user id and user datas($post), redirects if it finds errors with array sessions of errors
+     *
+     * @param  int $userId
+     * @param  array $post
+     *
+     * @return void
+     */
+    public function addPost(int $userId, array $post) {
         $userController = new UserController();
         $userController->redirectIfNotConnected();
 
@@ -65,14 +78,19 @@ class PostController {
             $_SESSION['userAddPost']['post'] = htmlspecialchars($post['post']);
 
             $_SESSION['userAddPost']['errors'] = $this->getErrors();
-            // $serializeErrorsList = serialize($errorsList);
-            // var_dump($errorsList);
-            // $userId = $_SESSION['user']['id'];
+            
             header("Location:index.php?id=$userId&action=addPostView");
         }
         
     }
 
+    /**
+     * renderEditPostView returns the view "editPostView" : Page with the form to edit a post according to its post id if connected
+     *
+     * @param int $postId
+     *
+     * @return void
+     */
     public function renderEditPostView(int $postId) {
         $userController = new UserController();
         $userController->redirectIfNotConnected();
@@ -86,6 +104,14 @@ class PostController {
         }
     }
 
+    /**
+     * editPost edits a post with the post id and user datas($post) and redirects to accountPage, redirects if it finds errors
+     *
+     * @param  int $postId
+     * @param  array $post
+     *
+     * @return void
+     */
     public function editPost(int $postId, array $post) {
         $userController = new UserController();
         $userController->redirectIfNotConnected();
@@ -108,6 +134,13 @@ class PostController {
          }
     }
 
+    /**
+     * removePost deletes a post with the post id and redirects to the accountPage
+     *
+     * @param  mixed $postId
+     *
+     * @return void
+     */
     public function removePost(int $postId) {
         $userController = new UserController();
         $userController->redirectIfNotConnected();

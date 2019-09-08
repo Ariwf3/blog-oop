@@ -2,7 +2,6 @@
 
 namespace Ariwf3\Blog_oop\Application\Controllers;
 use Ariwf3\Blog_oop\Application\Controllers\UserController;
-
 use Ariwf3\Blog_oop\Application\Models\PostModel;
 use Ariwf3\Blog_oop\Application\Models\CommentModel;
 
@@ -10,7 +9,6 @@ class CommentController {
 
 
     private $errors = array();
-
 
     /**
      * setErrors Checks the integrity of user data and builds arrays with errors found (author, message)
@@ -28,10 +26,10 @@ class CommentController {
             $this->errors["author"][] = "Le nom est obligatoire";
         }
         
-        // regex alphanumeric and accented characters, spaces between 2 and 30
+        // regex alphanumeric, spaces and accented characters, between 2 and 30
         if(!preg_match('`^[[:alnum:]áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ!?\s]{2,30}$`',$author)) 
         { 
-           $this->errors["author"][] = "Le format du nom n'est pas correct (lettres et chiffres uniquement, 2 caractères minimum, 30 caractères maximum)"; 
+            $this->errors["author"][] = "Le format du nom n'est pas correct (lettres et chiffres uniquement, 2 caractères minimum, 30 caractères maximum)"; 
         } 
         
         if (empty($message))  {
@@ -67,14 +65,14 @@ class CommentController {
 
         $post = $postModel->getOnepost($post_id);
         
-        $comments = $commentModel->getComments($post_id);
+        $comments = $commentModel->getCommentsByPost($post_id);
 
         require 'public/views/front/commentView.phtml';
     }
 
     
     /**
-     * addComment Insert the comment before redirecting if no user errors found, redirect with the error arrays in serialized form if at least one user error is found
+     * addComment Insert the comment before redirecting if no user errors found, redirects with the error arrays in session if at least one user error is found
      *
      * @param  int $post_id
      * @param  array $post
@@ -110,8 +108,6 @@ class CommentController {
             exit();
         }
         
-
     }
 
-    
 }

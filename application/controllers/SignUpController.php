@@ -124,7 +124,13 @@ class SignUpController {
         return $this->errors;
     }
 
-
+    /**
+     * logUp Logs up if no errors found, and logs in with the password_verify function then redirects to the index. 
+     *
+     * @param  array $post
+     *
+     * @return void
+     */
     public function logUp(array $post) {
         $firstName = trim($post['firstName']);
         $lastName = trim($post['lastName']);
@@ -160,7 +166,7 @@ class SignUpController {
                 
                 header('Location: index.php');
                 exit();
-            }
+            } // password verification
         
         } else {
             
@@ -172,6 +178,6 @@ class SignUpController {
             $_SESSION['userSignUp']['errors'] = $this->getErrors();
             
             header("Location:index.php?action=signUp");
-        }
+        } // count errors
     }
 }

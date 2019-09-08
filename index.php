@@ -36,27 +36,21 @@ try {
     $postController    = new PostController();
     $chatController    = new ChatController();
 
-    // var_dump($_SESSION);
-
     if( isset($_GET['action']) ) {
         $action = (string) $_GET['action'];
         
         switch ($action) {
             case 'home':
-                // var_dump($_COOKIE);
-                
                 $homeController->renderHomeView();
                 break;
 
             case 'comments':
-            
                 $id = (int) $_GET['id'];
                 if ($id > 0 && isset($id)) {
                     $commentController->renderCommentView($id);
                 } else {
                     throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
                 }
-                
                 break;
 
             case 'addComment':
@@ -67,7 +61,6 @@ try {
                 }   
                 break;
 
-            
             case 'signUp':
                 $signUpController->renderSignUpView();
                 break;
@@ -76,7 +69,6 @@ try {
                     $signUpController->setErrors($_POST);
                     $signUpController->logUp($_POST);
                 }
-                
                 break;
 
             case 'signIn':
@@ -114,7 +106,6 @@ try {
                 } else {
                     throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
                 }
-                
                 break;
 
             case 'editPostView':
@@ -127,7 +118,6 @@ try {
                 } else {
                     throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
                 }
-
                 break;
 
             case 'editPost':
@@ -141,7 +131,6 @@ try {
                 } else {
                     throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
                 }
-                
                 break;
 
             case 'removePost':
@@ -154,76 +143,71 @@ try {
                 } else {
                     throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
                 }
-                
-                
                 break;
 
             case 'editUser':
                 
-                    $userController->redirectIfNotAdmin();
+                $userController->redirectIfNotAdmin();
 
-                    $id = (int) $_GET['id'];
-                    if ( isset($id) && $id > 0 ) {
-                        $userController->editUser($id,$_POST);
-                    } else {
-                        throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
-                    }
-                
+                $id = (int) $_GET['id'];
+                if ( isset($id) && $id > 0 ) {
+                    $userController->editUser($id, $_POST);
+                } else {
+                    throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
+                }
                 break;
 
             case 'removeUser':
                 
-                    $userController->redirectIfNotAdmin();
+                $userController->redirectIfNotAdmin();
 
-                    $id = (int) $_GET['id'];
-                    if ( isset($id) && $id > 0 ) {
-                    $userController->removeUser($id);
-                    } else {
-                    throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
-                    }
-                
+                $id = (int) $_GET['id'];
+                if ( isset($id) && $id > 0 ) {
+                $userController->removeUser($id);
+                } else {
+                throw new MyInvalidArgumentException("L'id entré n'est pas valide (possibilités : inexistant, non numérique ou inférieur à 1)");
+                }
                 break;
 
-                case 'chat':
-                    $chatController->renderChatView();
-
-                    break;
+            case 'chat':
+                $chatController->renderChatView();
+                break;
                     
-                case 'addMessage':
-                    if (isset($_POST)) {
-                        $chatController->addMessageAjax($_POST);
-                    }
+            case 'addMessage':
+                if (isset($_POST)) {
+                    $chatController->addMessageAjax($_POST);
+                }
+                break;   
 
-                    break;   
-                case 'loadMessage':
-                    if (isset($_GET['id'])) {
-                        $lastId = (int) $_GET['id'];
-                        if ($lastId > 0) {
-                            $chatController->loadMessageAjax($lastId);
-                        }
+            case 'loadMessage':
+                if (isset($_GET['id'])) {
+                    $lastId = (int) $_GET['id'];
+                    if ($lastId > 0) {
+                        $chatController->loadMessageAjax($lastId);
                     }
-
-                    break;   
+                }
+                break;   
 
             default: 
                 $errorController->renderErrorView('404','La page où l\'action <span class="error_message">"' . $action . '" </span>est inexistante');
                 break;
-        } // switch
+        } // switch($action)
+
     } else {
         $homeController->renderHomeView();
-    }
+    } // isset($action)
     
 } catch(MyException $e) {
     $message = $e;
-    $errorController->renderErrorView('myexception',$message);
+    $errorController->renderErrorView('myexception', $message);
 
 } catch(PDOException $e) {
     $message = $e->getMessage() . " ligne <span class='error_message'>" . $e->getline() . "</span> dans le fichier <span class='error_message'>" . $e->getfile() ."</span>";
-    $errorController->renderErrorView('pdo',$message);
+    $errorController->renderErrorView('pdo', $message);
 
 } catch (MyInvalidArgumentException $e) {
     $message = $e;
-    $errorController->renderErrorView('invalidArgument',$message);
+    $errorController->renderErrorView('invalidArgument', $message);
 } 
 
 
