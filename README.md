@@ -7,20 +7,20 @@ Un simple blog réalisé dans le cadre d'un examen avec un back office et un cha
 
  ### Installation du projet
 * Cloner ou télécharger le dépôt 
-* accéder à la configuration de la bdd par le chemin : 
+* Accéder à la configuration de la bdd par le chemin : 
 ```
 application/classes/config/Database.php 
 ```
-modifier les variables $databaseSourceName,$databaseLogin et $databasePassword selon la configuration locale.
+* Modifier les variables $databaseSourceName,$databaseLogin et $databasePassword selon la configuration locale.
 ```
 private $databaseSourceName = 'mysql:host=myHostName;dbname=blog_oop';
 private $databaseLogin      = 'myLogin';
 private $databasePassword   = 'myPassword';
 ```
-* Importer le fichier sql dans le dossier "sql" pour construire la BDD.
+* Importer le fichier sql dans le dossier nommé "sql" pour construire la BDD.
 
 ### Gestion des classes
-Création d'un autoloader pour charger les classes automatiquement
+Création d'un autoloader pour charger les classes automatiquement.
 
 ### Gestion des routes
 Utilisation d'un contrôleur frontal pour gérer les routes en passant par un même index.
@@ -36,5 +36,8 @@ Création d'exceptions personnalisées et conversion des erreurs PHP en exceptio
 ### Gestion du front
 * Approche Mobile-First avec medias queries pour le CSS
 * Utilisation de la librairie jQuery pour gérer les pré-vérifications de formulaires et les requêtes ajax du chat
+
+### Documentation
+Utilisation de la PHPDoc et de la JSDoc.
 
 
