@@ -10,7 +10,9 @@ class CommentModel extends Database {
     CONST ENTITY_CLASSNAME = "CommentsEntity";
 
     /**
-     * insertComment insert one comment with user datas of the array post according to an post id as parameter
+     * insertComment 
+     * 
+     * insert one comment with user datas of the array post according to an post id as parameter
      *
      * @param  int $post_id
      * @param  array $post
@@ -42,7 +44,9 @@ class CommentModel extends Database {
     }
 
     /**
-     * getCommentsByPost Returns all comments of a post according to its id as an array of instances of the "CommentsEntity" entity
+     * getCommentsByPost 
+     * 
+     * Returns all comments of a post according to its id as an array of instances of the "CommentsEntity" entity
      *
      * @param int $post_id
      *
@@ -61,7 +65,9 @@ class CommentModel extends Database {
     }
 
     /**
-     * getLastCommentsBypost Returns 4 last comments of a post according to its id as an array of instances of the "CommentsEntity" entity
+     * getLastCommentsBypost 
+     * 
+     * Returns 4 last comments of a post according to its id as an array of instances of the "CommentsEntity" entity
      *
      * @param int $post_id
      *

@@ -8,7 +8,9 @@ use Ariwf3\Blog_oop\Application\Models\CommentModel;
 class HomeController {
 
     /**
-     * renderHomeView returns the view "homeView" : Page with all last posts and their last comments
+     * renderHomeView 
+     * 
+     * returns the view "homeView" : Page with all last posts and their last comments
      *
      * @return void
      */

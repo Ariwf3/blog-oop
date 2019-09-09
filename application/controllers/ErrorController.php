@@ -5,7 +5,9 @@ namespace Ariwf3\Blog_oop\Application\Controllers;
 class ErrorController {
 
     /**
-     * renderErrorView displays the error view with its information (title,message,image)
+     * renderErrorView 
+     * 
+     * displays the error view with its information (title,message,image)
      *
      * @param  string $errorName
      * @param  string $errorMessage

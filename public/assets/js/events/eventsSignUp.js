@@ -1,48 +1,83 @@
+
+/**
+ * ariwf3_blogoop_eventsSignUp represents a namespace for the sign up events 
+ * 
+ * @namespace ariwf3_blogoop_eventsSignUp
+ */
 const ariwf3_blogoop_eventsSignUp = {
 
-    getUserInfos: function () {
+    /**
+     * getUserInfos
+     * 
+     * Contains each user's form information (field, value and feedback)
+     * 
+     */
+    getUserInfos: () => {
         let formTags = {
-            firstName: {
-                field: $('#firstName'),
-                value: $('#firstName').val().trim(),
-                feedback: $('#firstName').next()
-            },
-            lastName: {
-                field: $('#lastName'),
-                value: $('#lastName').val().trim(),
-                feedback: $('#lastName').next()
-            },
-            email: {
-                field: $('#email'),
-                value: $('#email').val().trim(),
-                feedback: $('#email').next()
-            },
-            pseudo: {
-                field: $('#pseudo'),
-                value: $('#pseudo').val().trim(),
-                feedback: $('#pseudo').next()
-            },
-            password: {
-                field: $('#password'),
-                value: $('#password').val(),
-                feedback: $('#password').next()
-            },
-            passwordCheck: {
-                field: $('#passwordCheck'),
-                value: $('#passwordCheck').val(),
-                feedback: $('#passwordCheck').next()
-            },
+                firstName: {
+                    field: $('#firstName'),
+                    value: $('#firstName').val().trim(),
+                    feedback: $('#firstName').next()
+                },
+                lastName: {
+                    field: $('#lastName'),
+                    value: $('#lastName').val().trim(),
+                    feedback: $('#lastName').next()
+                },
+                email: {
+                    field: $('#email'),
+                    value: $('#email').val().trim(),
+                    feedback: $('#email').next()
+                },
+                pseudo: {
+                    field: $('#pseudo'),
+                    value: $('#pseudo').val().trim(),
+                    feedback: $('#pseudo').next()
+                },
+                password: {
+                    field: $('#password'),
+                    value: $('#password').val(),
+                    feedback: $('#password').next()
+                },
+                passwordCheck: {
+                    field: $('#passwordCheck'),
+                    value: $('#passwordCheck').val(),
+                    feedback: $('#passwordCheck').next()
+                },
         };
         return formTags;
     },
+    /**
+     * removeErrors
+     * 
+     * removes the error classes and error message and prevents them from repeating themselves
+     * 
+     * @param {jQuery} $field the html tag which contains the form field
+     * @param {jQuery} $feedback the html tag which contains the feedback message
+     */
     removeErrors: function (field, feedback) {
         field.removeClass("invalid");
         feedback.remove();
         field.removeClass("valid");
     },
+    /**
+     * regexNames
+     * 
+     * Contains a regular expression to check the firstname and lastname
+     */
     regexNames: /^([a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\s]|[-.](?![-.])){2,50}$/,
+     /**
+      * regexPseudo
+      * 
+      * Contains a regular expression to check the pseudo
+      */
     regexPseudo: /^([a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ\s]|[-_](?![-_])){2,30}$/,
-    verifiyAllFieldsValidity: function () {
+    /**
+     * verifiyAllFieldsValidity
+     * 
+     * Verifies if the form has no error and replace the error feedback by a success feedback
+     */
+    verifiyAllFieldsValidity: () => {
         let userInfos = ariwf3_blogoop_eventsSignUp.getUserInfos();
 
         if (
@@ -62,7 +97,12 @@ const ariwf3_blogoop_eventsSignUp = {
             $(".popup_error_form").replaceWith("<p class='popup_valid_form'>On a l'air bon !</p>");
         }
     },
-    showValidPopup: function () {
+    /**
+     * showValidPopup
+     * 
+     * Verifies if all fields have the "valid" class and fades in a success feedback
+     */
+    showValidPopup: () => {
         let userInfos = ariwf3_blogoop_eventsSignUp.getUserInfos();
 
         if (
@@ -74,10 +114,20 @@ const ariwf3_blogoop_eventsSignUp = {
             $(".popup_valid_form").fadeIn('slow');
         }
     },
-    hideValidPopup: function () {
+    /**
+     * hideValidPopup
+     * 
+     * Fades out the success feedback
+     */
+    hideValidPopup: () => {
         $(".popup_valid_form").fadeOut('slow');
     },
-    verifyLastNameValidity: function () {
+    /**
+     * verifyLastNameValidity
+     * 
+     * Verifies the lastname field and toggles between valid or negative feedback
+     */
+    verifyLastNameValidity: () => {
         let userInfos = ariwf3_blogoop_eventsSignUp.getUserInfos();
 
         if (userInfos.lastName.value.length === 0) {
@@ -100,7 +150,12 @@ const ariwf3_blogoop_eventsSignUp = {
             ariwf3_blogoop_eventsSignUp.showValidPopup();
         }
     },
-    verifyFirstNameValidity: function () {
+    /**
+     * verifyFirstNameValidity
+     * 
+     * Verifies the firstname field and toggles between valid or negative feedback
+     */
+    verifyFirstNameValidity: () => {
         let userInfos = ariwf3_blogoop_eventsSignUp.getUserInfos();
 
         if (userInfos.firstName.value.length === 0) {
@@ -124,7 +179,12 @@ const ariwf3_blogoop_eventsSignUp = {
             ariwf3_blogoop_eventsSignUp.showValidPopup();
         }
     },
-    verifyPseudoValidity: function () {
+    /**
+     * verifyPseudoValidity
+     * 
+     * Verifies the pseudo field and toggles between valid or negative feedback
+     */
+    verifyPseudoValidity: () => {
         let userInfos = ariwf3_blogoop_eventsSignUp.getUserInfos();
 
         if (userInfos.pseudo.value.length === 0) {
@@ -150,7 +210,12 @@ const ariwf3_blogoop_eventsSignUp = {
             ariwf3_blogoop_eventsSignUp.showValidPopup();
         }
     },
-    verifyPasswordCheckValidity: function () {
+    /**
+     * verifyPasswordCheckValidity
+     * 
+     * Verifies the password field and toggles between valid or negative feedback
+     */
+    verifyPasswordCheckValidity: () => {
         let userInfos = ariwf3_blogoop_eventsSignUp.getUserInfos();
 
         if (userInfos.passwordCheck.value.length === 0)
@@ -170,8 +235,12 @@ const ariwf3_blogoop_eventsSignUp = {
             ariwf3_blogoop_eventsSignUp.showValidPopup();
         }
     },
-    checkFirstNameOnKeyup: function () {
-
+    /**
+     * checkFirstNameOnKeyup
+     * 
+     * Callback function for the keyup event listener, verifies the firstname field
+     */
+    checkFirstNameOnKeyup: () => {
         let userInfos = ariwf3_blogoop_eventsSignUp.getUserInfos();
 
         ariwf3_blogoop_eventsSignUp.removeErrors(userInfos.firstName.field, userInfos.firstName.feedback);
@@ -180,7 +249,12 @@ const ariwf3_blogoop_eventsSignUp = {
 
         ariwf3_blogoop_eventsSignUp.verifiyAllFieldsValidity()
     },
-    checkLastNameOnKeyup: function () {
+    /**
+     * checkLastNameOnKeyup
+     * 
+     * Callback function for the keyup event listener, verifies the lastname field
+     */
+    checkLastNameOnKeyup: () => {
 
         let userInfos = ariwf3_blogoop_eventsSignUp.getUserInfos();
 
@@ -190,7 +264,12 @@ const ariwf3_blogoop_eventsSignUp = {
 
         ariwf3_blogoop_eventsSignUp.verifiyAllFieldsValidity()
     },
-    checkPseudoOnKeyup: function () {
+    /**
+     * checkPseudoOnKeyup
+     * 
+     * Callback function for the keyup event listener, verifies the pseudo field
+     */
+    checkPseudoOnKeyup: () => {
 
         let userInfos = ariwf3_blogoop_eventsSignUp.getUserInfos();
 
@@ -200,7 +279,12 @@ const ariwf3_blogoop_eventsSignUp = {
 
         ariwf3_blogoop_eventsSignUp.verifiyAllFieldsValidity()
     },
-    passwordCheckOnKeyup: function () {
+    /**
+     * passwordCheckOnKeyup
+     * 
+     * Callback function for the keyup event listener, verifies the password field
+     */
+    passwordCheckOnKeyup: () => {
 
         let userInfos = ariwf3_blogoop_eventsSignUp.getUserInfos();
 

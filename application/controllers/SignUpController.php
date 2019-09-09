@@ -8,12 +8,21 @@ class SignUpController {
 
     private $errors = array();
 
+    /**
+     * renderSignUpView 
+     * 
+     * Returns the view "signUpView" : Page with the sign up section
+     *
+     * @return void
+     */
     public function renderSignUpView() {
         require 'public/views/front/signUpView.phtml';
     }
     
     /**
-     * setErrors Checks the integrity of user data and builds arrays with errors found (checks lastname,firstname,email,pseudo,password,password check)
+     * setErrors 
+     * 
+     * Checks the integrity of user data and builds arrays with errors found (checks lastname,firstname,email,pseudo,password,password check)
      *
      * @param  array $post
      *
@@ -116,7 +125,9 @@ class SignUpController {
     }
 
     /**
-     * getErrors returns the errors arrays (lastname,firstname,email,pseudo,password and password check)
+     * getErrors 
+     * 
+     * returns the errors arrays (lastname,firstname,email,pseudo,password and password check)
      *
      * @return array
      */
@@ -125,7 +136,9 @@ class SignUpController {
     }
 
     /**
-     * logUp Logs up if no errors found, and logs in with the password_verify function then redirects to the index. 
+     * logUp 
+     * 
+     * Logs up if no errors found, and logs in with the password_verify function then redirects to the index. 
      *
      * @param  array $post
      *

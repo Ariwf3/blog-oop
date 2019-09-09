@@ -11,7 +11,9 @@ class CommentController {
     private $errors = array();
 
     /**
-     * setErrors Checks the integrity of user data and builds arrays with errors found (author, message)
+     * setErrors 
+     * 
+     * Checks the integrity of user data and builds arrays with errors found (author, message)
      *
      * @param  array $post
      *
@@ -52,7 +54,9 @@ class CommentController {
     }
 
     /**
-     * renderCommentView returns the view "commentView" : A post and its comments using the post id
+     * renderCommentView 
+     * 
+     * returns the view "commentView" : A post and its comments using the post id
      *
      * @param  int $post_id
      *
@@ -72,7 +76,9 @@ class CommentController {
 
     
     /**
-     * addComment Insert the comment before redirecting if no user errors found, redirects with the error arrays in session if at least one user error is found
+     * addComment 
+     * 
+     * Insert the comment before redirecting if no user errors found, redirects with the error arrays in session if at least one user error is found
      *
      * @param  int $post_id
      * @param  array $post

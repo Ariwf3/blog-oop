@@ -6,7 +6,9 @@ use Ariwf3\Blog_oop\Application\Models\ChatModel;
 class ChatController {
 
     /**
-     * renderChatView returns the view "chatView" : Page with the instant messaging with last messages
+     * renderChatView 
+     * 
+     * returns the view "chatView" : Page with the instant messaging with last messages
      *
      * @return void
      */
@@ -42,7 +44,9 @@ class ChatController {
 
 
     /**
-     * loadLastMessage Loads the last message according to the id($lastId) of the last message received
+     * loadLastMessage 
+     * 
+     * Loads the last message according to the id($lastId) of the last message received
      *
      * @param  int $lastId
      *
@@ -56,7 +60,9 @@ class ChatController {
     }
 
     /**
-     * addMessageAjax Adds the message asynchronously thanks to the received datas $post from the ajax script, redirects in case of javascript desactivation by the user
+     * addMessageAjax 
+     * 
+     * Adds the message asynchronously thanks to the received datas $post from the ajax script, redirects in case of javascript desactivation by the user
      *
      * @param  array $post
      *
@@ -79,7 +85,9 @@ class ChatController {
     }
 
     /**
-     * loadMessageAjax Loads messages asynchronously thanks to the received data $lastId from the ajax script and resends datas to the script
+     * loadMessageAjax 
+     * 
+     * Loads messages asynchronously thanks to the received data $lastId from the ajax script and resends datas to the script
      *
      * @param  int $lastId
      *

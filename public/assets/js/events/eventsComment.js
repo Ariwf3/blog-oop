@@ -1,7 +1,17 @@
+/**
+ * ariwf3_blogoop_eventsComments represents a namespace for the comments events
+ * 
+ * @namespace ariwf3_blogoop_eventsComments
+ */
 const ariwf3_blogoop_eventsComments = {
 
-    
-    getUserInfos: function () {
+    /**
+     * getUserInfos
+     * 
+     * Contains each user's form information (field, value and feedback)
+     * 
+     */
+    getUserInfos: () => {
         let formTags = {
             author: {
                 field: $('#author'),
@@ -16,13 +26,31 @@ const ariwf3_blogoop_eventsComments = {
         };
         return formTags;
     },
+    /**
+     * regexAuthor 
+     * 
+     * Contains a regular expression to check the author name
+    */
     regexAuthor: /^[a-zA-ZáàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ!?\s]{2,30}$/,
-    removeErrors: function (field, feedback) {
-        field.removeClass("invalid");
-        feedback.remove();
-        field.removeClass("valid");
+    /**
+     * removeErrors
+     * 
+     * removes the error classes and error message and prevents them from repeating themselves
+     * 
+     * @param {jQuery} $field the html tag which contains the form field
+     * @param {jQuery} $feedback the html tag which contains the feedback message
+     */
+    removeErrors: function ($field, $feedback) {
+        $field.removeClass("invalid");
+        $feedback.remove();
+        $field.removeClass("valid");
     },
-    verifiyAllFieldsValidity: function () {
+    /**
+     * verifiyAllFieldsValidity
+     * 
+     * Verifies if the form has no error and replace the error feedback by a success feedback
+     */
+    verifiyAllFieldsValidity: () => {
         let userInfos = ariwf3_blogoop_eventsComments.getUserInfos();
 
         if (userInfos.author.field.hasClass("valid") && userInfos.author.feedback.hasClass("valid_feedback") && userInfos.message.field.hasClass("valid") && userInfos.message.feedback.hasClass("valid_feedback"))
@@ -30,7 +58,12 @@ const ariwf3_blogoop_eventsComments = {
             $(".popup_error_form").replaceWith("<p class='popup_valid_form'>On a l'air bon !</p>");
         }
     },
-    verifyAuthorValidity: function () {
+    /**
+     * verifyAuthorValidity
+     * 
+     * Verifies the author field and toggles between valid or negative feedback
+     */
+    verifyAuthorValidity: () => {
         let userInfos = ariwf3_blogoop_eventsComments.getUserInfos();
 
         if (!(ariwf3_blogoop_eventsComments.regexAuthor.test(userInfos.author.value)))
@@ -48,7 +81,12 @@ const ariwf3_blogoop_eventsComments = {
             }
         }
     },
-    verifyMessageValidity: function () {
+    /**
+     * verifyMessageValidity
+     * 
+     * Verifies the message field and toggles between valid or negative feedback
+     */
+    verifyMessageValidity: () => {
         let userInfos = ariwf3_blogoop_eventsComments.getUserInfos();
 
         if (userInfos.message.value.length === 0 || userInfos.message.value.length < 5)
@@ -66,7 +104,12 @@ const ariwf3_blogoop_eventsComments = {
         }
     },
     
-    checkAuthorOnKeyup: function () {
+    /**
+     * checkAuthorOnKeyup
+     * 
+     * Callback function for the keyup event listener, verifies the author field
+     */
+    checkAuthorOnKeyup: () => {
 
         let userInfos = ariwf3_blogoop_eventsComments.getUserInfos();
 
@@ -76,7 +119,12 @@ const ariwf3_blogoop_eventsComments = {
 
         ariwf3_blogoop_eventsComments.verifiyAllFieldsValidity()
     },
-    checkMessageOnKeyup: function () {
+    /**
+     * checkMessageOnKeyup
+     * 
+     * Callback function for the keyup event listener, verifies the message field
+     */
+    checkMessageOnKeyup: () => {
 
         let userInfos = ariwf3_blogoop_eventsComments.getUserInfos();
 

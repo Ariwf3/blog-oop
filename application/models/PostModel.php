@@ -10,7 +10,9 @@ class PostModel extends Database {
     CONST ENTITY_CLASSNAME = "PostsEntity";
 
     /**
-     * insertPost insert one post with user datas of the array post according to an user id as parameter
+     * insertPost 
+     * 
+     * insert one post with user datas of the array post according to an user id as parameter
      *
      * @param  int $userId
      * @param  array $post
@@ -41,7 +43,9 @@ class PostModel extends Database {
     }
 
     /**
-     * updatePost updates one post with user datas of the array post according to a post id as parameter
+     * updatePost 
+     * 
+     * updates one post with user datas of the array post according to a post id as parameter
      *
      * @param  int $postId
      * @param  array $post
@@ -92,7 +96,9 @@ class PostModel extends Database {
     }
 
     /**
-     * getPosts Returns all the last posts as an array of instances of the "PostEntity" entity and the user name of the "users" table
+     * getPosts 
+     * 
+     * Returns all the last posts as an array of instances of the "PostEntity" entity and the user name of the "users" table
      *
      * @return array
      */
@@ -104,7 +110,9 @@ class PostModel extends Database {
     }
 
      /**
-      * getPostsByUser Returns all posts according to the user id as an array of instances of the "PostEntity" entity
+      * getPostsByUser 
+      *
+      *Returns all posts according to the user id as an array of instances of the "PostEntity" entity
       *
       * @param  int $userId
       *
@@ -120,7 +128,9 @@ class PostModel extends Database {
     }
 
     /**
-     * getOnePost Returns a post according to its id as an array of instances of the "PostEntity" entity and the user pseudo of the "users" table
+     * getOnePost 
+     * 
+     * Returns a post according to its id as an array of instances of the "PostEntity" entity and the user pseudo of the "users" table
      *
      * @param int $id
      *

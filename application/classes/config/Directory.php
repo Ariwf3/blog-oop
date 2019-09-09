@@ -21,7 +21,9 @@ class Directory {
     const CONFIG_DIRECTORY     = 'application/classes/config';
 
     /**
-     * requireFileWithoutNamespace Calls a page corresponding to a class without the namespace in the class name according to the folder name
+     * requireFileWithoutNamespace 
+     * 
+     * Calls a page corresponding to a class without the namespace in the class name according to the folder name
      *
      * @param string $class 
      *

@@ -64,7 +64,9 @@ class UserModel extends Database {
     }
 
     /**
-     * updateUser updates one user with user datas of the array post according to its id as parameter
+     * updateUser 
+     * 
+     * updates one user with user datas of the array post according to its id as parameter
      *
      * @param  int $id
      * @param  array $post

@@ -5,7 +5,9 @@ namespace Ariwf3\Blog_oop\Application\Classes\Exceptions;
 class MyException extends \ErrorException {
 
     /**
-     * exception_error_handler callback function for set_error_handler(), throwes an exception with error informations ($severity, $message, $file, $line)
+     * exception_error_handler
+     * 
+     *  callback function for set_error_handler(), throwes an exception with error informations ($severity, $message, $file, $line)
      *
      * @param  int $severity severity of the error represented by a numerical code
      * @param  string $message 
@@ -25,7 +27,9 @@ class MyException extends \ErrorException {
 
 
     /**
-     * set_error_exception launches the set_error_handler function which sets a user-defined error handler function
+     * set_error_exception
+     * 
+     *  launches the set_error_handler function which sets a user-defined error handler function
      *
      * @return void
      */

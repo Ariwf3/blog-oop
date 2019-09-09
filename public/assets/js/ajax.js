@@ -1,18 +1,21 @@
-/** @var {string} $message - Globale va récupérer la valeur du message */
+/** @var {string} $message - Global will retrieve the value of the message */
 let $messageChat;
-/** @var {string} $auteur - Globale va récupérer la valeur de l'auteur */
+/** @var {string} $auteur - Global will retrieve the value of the author */
 let $authorChat;
 
 
 /**
  * Represents a namespace that contains ajax requests
  * 
- * @namespace ariwf3_blogoop_eventsChat
+ * @namespace ariwf3_blogoop_ajax
  */
 const ariwf3_blogoop_ajax = {
 
     /**
-     * Envoie des requêtes asynchrones ajax post avec les paramètres utilisateurs
+     * sendMessage
+     * 
+     * Sends asynchronous ajax post requests with user settings
+     * 
      * @property {function} sendMessage
      */
     sendMessage: () => {
@@ -22,34 +25,40 @@ const ariwf3_blogoop_ajax = {
                 message: $messageChat
             },
             "html"
-        ); // fin traitement ajax
+        ); 
     },
 
     /**
-     * Envoie des requêtes asynchrones ajax get avec pour paramètre le dernier id inséré
-     * @property {function} loadMessage - contient la fonction qui vérifiera le dernier message inséré toutes les 4 secondes
+     * loadMessage
+     * 
+     * Sends asynchronous ajax get requests with the last id inserted as parameter
+     * 
+     * @property { function } loadMessage - contains the function that will check the last message inserted every 4 seconds
      */
     loadMessage: () => {
-       
+
         setTimeout(() => {
             /**
-             * Contient l'identifiant du denrier message inséré
+             * Contains the identifier of the last message inserted
              * @var lastInsertId {string} 
              * */
             let lastInsertId = $("p:first").data('id');
             console.log(lastInsertId);
             $.getJSON("index.php?action=loadMessage&id=" + lastInsertId, ariwf3_blogoop_ajax.displayMessage
             );
-            // fonction relancée dans le setTimeout pour répétition
+            // function restarted in the setTimeout for repetition
             ariwf3_blogoop_ajax.loadMessage()
-            //fonction relancée après 4 secondes
         }, 4000);
 
     },
     /**
-     * Fonction de callback ajax, permet d'afficher les derniers messages enregistrés, formate la réponse et l'ajoute au DOM
-     *@property {function} display - contient la fonction de qui servira de retour
-     * @param {JSON} response - La données renvoyées par le serveur
+     * displayMessage
+     * 
+     * Ajax callback function, displays the last recorded messages, formats the response and adds it to the DOM
+     * 
+     * @property {function} - contains thefunction of which will be used as a return
+     * 
+     * @param {JSON} response - The data returned by the server
      */
     displayMessage: function (response) {
         console.log(response[0].id);
@@ -61,12 +70,10 @@ const ariwf3_blogoop_ajax = {
             message += "<span><i class='fab fa-rocketchat'></i>" + response[0].author + " le " + response[0].creation_date + " : </span>";
             message += response[0].message + "</p>";
 
-            // message.insertAfter($("h3")); 
             $("h3").after(message);
 
         }
 
     }
 
-
-} // fin namespace ariNamespaceAjax
+} 

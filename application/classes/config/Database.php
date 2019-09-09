@@ -31,7 +31,9 @@ class Database {
 
 
     /**
-     * protectWithHtmlSpecialCharsAndTrim Protects the values and removes excess spaces of a given array values with the htmlspecialchars() and trim() functions
+     * protectWithHtmlSpecialCharsAndTrim 
+     * 
+     * Protects the values and removes excess spaces of a given array values with the htmlspecialchars() and trim() functions
      *
      * @param array $arrayParams The array that will contain the parameters to be protected
      *
@@ -74,7 +76,9 @@ class Database {
 
 
     /**
-     * queryAllFetchClass Retrieves all posts and returns them as an array of instances of the class specified using the FETCH_CLASS method
+     * queryAllFetchClass 
+     * 
+     * Retrieves all posts and returns them as an array of instances of the class specified using the FETCH_CLASS method
      *
      * @param  string $sqlQuery
      * @param  array|null $arrayParams The array that will contain the parameters to execute the prepared request
@@ -92,7 +96,9 @@ class Database {
     }
 
     /**
-     * queryAllFetchAssoc performs a protected prepared query and returns several associative result arrays with the fetchAll() method and PDO::FETCH_ASSOC constant as parameter
+     * queryAllFetchAssoc 
+     * 
+     * performs a protected prepared query and returns several associative result arrays with the fetchAll() method and PDO::FETCH_ASSOC constant as parameter
      *
      * @param  string $sqlQuery
      * @param  array $arrayParams
@@ -106,7 +112,9 @@ class Database {
     }
 
     /**
-     * queryOneFetchAssoc performs a protected prepared query and returns one associative result array with the fetch() method and the FETCH_ASSOC constant as parameter
+     * queryOneFetchAssoc
+     * 
+     *  performs a protected prepared query and returns one associative result array with the fetch() method and the FETCH_ASSOC constant as parameter
      *
      * @param  string $sqlQuery
      * @param  array $arrayParams The table that will contain the parameters to execute the prepared request

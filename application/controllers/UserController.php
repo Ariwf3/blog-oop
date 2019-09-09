@@ -46,7 +46,9 @@ class UserController {
     }
 
     /**
-     * editUser edits the user according to its id and user datas $post and redirect to accountPage, redirects to index if not admin
+     * editUser 
+     * 
+     * edits the user according to its id and user datas $post and redirect to accountPage, redirects to index if not admin
      *
      * @param  int $userId
      * @param  array $post
@@ -68,7 +70,9 @@ class UserController {
     }
 
     /**
-     * removeUser Deletes the user according to its id and redirects to accountPage
+     * removeUser 
+     * 
+     * Deletes the user according to its id and redirects to accountPage
      *
      * @param  int $userId
      *

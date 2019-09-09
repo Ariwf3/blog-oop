@@ -9,7 +9,9 @@ class SignInController {
     private $errors = array();
 
     /**
-     * renderSignInView returns the view "signInView" : Page with the sign in section
+     * renderSignInView 
+     * 
+     * Returns the view "signInView" : Page with the sign in section
      *
      * @return void
      */
@@ -66,7 +68,9 @@ class SignInController {
     }
 
      /**
-      * logIn Logs in if no errors found, uses the password_verify function to verify the hashed password and redirects to the index
+      * logIn 
+      *
+      *Logs in if no errors found, uses the password_verify function to verify the hashed password and redirects to the index
       *
       * @param  array $post
       *

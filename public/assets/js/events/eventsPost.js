@@ -1,6 +1,17 @@
+/**
+ * ariwf3_blogoop_eventsPost represents a namespace for the posts events 
+ * 
+ * @namespace ariwf3_blogoop_eventsPost
+ */
 const ariwf3_blogoop_eventsPost = {
 
-    getUserInfos: function () {
+    /**
+     * getUserInfos
+     * 
+     * Contains each user's form information (field, value and feedback)
+     * 
+     */
+    getUserInfos: () => {
         let formTags = {
             title: {
                 field: $('#title'),
@@ -15,20 +26,38 @@ const ariwf3_blogoop_eventsPost = {
         };
         return formTags;
     },
+    /**
+     * removeErrors
+     * 
+     * removes the error classes and error message and prevents them from repeating themselves
+     * 
+     * @param {jQuery} $field the html tag which contains the form field
+     * @param {jQuery} $feedback the html tag which contains the feedback message
+     */
     removeErrors: function (field, feedback) {
         field.removeClass("invalid");
         feedback.remove();
         field.removeClass("valid");
 
     },
-    verifiyAllFieldsValidity: function () {
+    /**
+     * verifiyAllFieldsValidity
+     * 
+     * Verifies if the form has no error and replace the error feedback by a success feedback
+     */
+    verifiyAllFieldsValidity: () => {
         let userInfos = ariwf3_blogoop_eventsPost.getUserInfos();
 
         if (userInfos.title.field.hasClass("valid") && userInfos.title.feedback.hasClass("valid_feedback") && userInfos.post.field.hasClass("valid") && userInfos.post.feedback.hasClass("valid_feedback")) {
             $(".popup_error_form").replaceWith("<p class='popup_valid_form'>On a l'air bon !</p>");
         }
     },
-    verifyTitleValidity: function () {
+    /**
+     * verifyTitleValidity
+     * 
+     * Verifies the title field and toggles between valid or negative feedback
+     */
+    verifyTitleValidity: () => {
         let userInfos = ariwf3_blogoop_eventsPost.getUserInfos();
 
         if (userInfos.title.value.length === 0 || userInfos.title.value.length < 3) {
@@ -44,7 +73,12 @@ const ariwf3_blogoop_eventsPost = {
             }
         }
     },
-    verifyPostValidity: function () {
+    /**
+     * verifyPostValidity
+     * 
+     * Verifies the post field and toggles between valid or negative feedback
+     */
+    verifyPostValidity: () => {
         let userInfos = ariwf3_blogoop_eventsPost.getUserInfos();
 
         if (userInfos.post.value.length === 0 || userInfos.post.value.length < 15) {
@@ -59,7 +93,12 @@ const ariwf3_blogoop_eventsPost = {
             }
         }
     },
-    checkTitleOnKeyup: function () {
+    /**
+     * checkEmailOnKeyup
+     * 
+     * Callback function for the keyup event listener, verifies the title field
+     */
+    checkTitleOnKeyup: () => {
 
         let userInfos = ariwf3_blogoop_eventsPost.getUserInfos();
 
@@ -69,11 +108,16 @@ const ariwf3_blogoop_eventsPost = {
 
         ariwf3_blogoop_eventsPost.verifiyAllFieldsValidity()
     },
-    checkPostOnKeyup: function () {
+    /**
+     * checkPostOnKeyup
+     * 
+     * Callback function for the keyup event listener, verifies the post field
+     */
+    checkPostOnKeyup: () => {
 
         let userInfos = ariwf3_blogoop_eventsPost.getUserInfos();
 
-         ariwf3_blogoop_eventsPost.removeErrors(userInfos.post.field, userInfos.post.feedback);
+        ariwf3_blogoop_eventsPost.removeErrors(userInfos.post.field, userInfos.post.feedback);
 
         ariwf3_blogoop_eventsPost.verifyPostValidity();
 

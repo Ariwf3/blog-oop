@@ -9,7 +9,9 @@ class HandlerUncaughtException {
 
     
     /**
-     * customException callback for the set_exception_handler function, customize the exception, takes as a parameter an object representing the exception 
+     * customException
+     * 
+     *  callback for the set_exception_handler function, customize the exception, takes as a parameter an object representing the exception 
      *
      * @param mixed $e object representing the exception
      *

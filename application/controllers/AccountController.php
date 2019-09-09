@@ -9,7 +9,9 @@ class AccountController {
 
 
     /**
-     * renderAccountView returns the view "accountView" : Page with the account informations and actions if connected, retirects to index if not connected
+     * renderAccountView 
+     * 
+     * Returns the view "accountView" : Page with the account informations and actions if connected, retirects to index if not connected
      *
      * @return void
      */

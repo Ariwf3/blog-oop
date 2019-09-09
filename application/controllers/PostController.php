@@ -8,7 +8,9 @@ class PostController {
     private $errors = array();
 
     /**
-     * setErrors Checks the integrity of user data and builds arrays with errors found (checks title and post)
+     * setErrors 
+     * 
+     * Checks the integrity of user data and builds arrays with errors found (checks title and post)
      *
      * @param  array $post
      *
@@ -41,7 +43,9 @@ class PostController {
     }
 
     /**
-     * renderAddPostView returns the view "addPostView" : Page with the form to add a post if connected
+     * renderAddPostView 
+     * 
+     * returns the view "addPostView" : Page with the form to add a post if connected
      *
      * @return void
      */
@@ -53,7 +57,9 @@ class PostController {
     }
 
     /**
-     * addPost adds a post with the user id and user datas($post), redirects if it finds errors with array sessions of errors
+     * addPost 
+     * 
+     * adds a post with the user id and user datas($post), redirects if it finds errors with array sessions of errors
      *
      * @param  int $userId
      * @param  array $post
@@ -85,7 +91,9 @@ class PostController {
     }
 
     /**
-     * renderEditPostView returns the view "editPostView" : Page with the form to edit a post according to its post id if connected
+     * renderEditPostView 
+     * 
+     * returns the view "editPostView" : Page with the form to edit a post according to its post id if connected
      *
      * @param int $postId
      *
@@ -105,7 +113,9 @@ class PostController {
     }
 
     /**
-     * editPost edits a post with the post id and user datas($post) and redirects to accountPage, redirects if it finds errors
+     * editPost 
+     * 
+     * edits a post with the post id and user datas($post) and redirects to accountPage, redirects if it finds errors
      *
      * @param  int $postId
      * @param  array $post
@@ -135,7 +145,9 @@ class PostController {
     }
 
     /**
-     * removePost deletes a post with the post id and redirects to the accountPage
+     * removePost 
+     * 
+     * deletes a post with the post id and redirects to the accountPage
      *
      * @param  mixed $postId
      *

@@ -1,14 +1,15 @@
 /**
- * ariwf3_blogoop_events represents a namespace for the chat events callback
+ * ariwf3_blogoop_events represents a namespace for the chat events
  * 
  * @namespace ariwf3_blogoop_events
  */
 const ariwf3_blogoop_eventsChat = {
 
     /**
+     * sendMessageOnClick
+     * 
      * Contains the callback function for sending the message to the click, checks the user data, displays the message sent and triggers the ajax request
      * 
-     * @property {function} sendMessageOnClick
      * @param {event} e - represents the event object
      */
     sendMessageOnClick: function (e) {
@@ -29,37 +30,16 @@ const ariwf3_blogoop_eventsChat = {
         } else if ($messageChat.length < 5) {
             $error.fadeIn();
         } else {
-            //appel ajax
             ariwf3_blogoop_ajax.sendMessage();
 
-            // on retire le popup d'erreur s'il est activé
             $error.fadeOut();
 
-            // on vide le champ textarea
             $("textarea").val('');
-            // on ajoute le message courant juste au dessus
+
             $('#messages').append("<p><span><i class='fas fa-mug-hot'></i> " + decodeURIComponent($authorChat) + " : </span>" + decodeURIComponent($messageChat) + "</p>");
         }
 
-       /*  if ($messageChat != "" && $authorChat != "") {
-
-            //appel ajax
-            ariwf3_blogoop_ajax.sendMessage();
-
-            // on retire le popup d'erreur s'il est activé
-            $error.fadeOut();
-
-            // on vide le champ textarea
-            $("textarea").val('');
-            // on ajoute le message courant juste au dessus
-            $('#messages').append("<p><span><i class='fas fa-mug-hot'></i> " + decodeURIComponent($authorChat) + " : </span>" + decodeURIComponent($messageChat) + "</p>");
-
-        } else {
-            
-            $error.fadeIn();
-
-        } */
-
+    
     }
 
-} // fin namespace ariNamespaceEvents
+} 

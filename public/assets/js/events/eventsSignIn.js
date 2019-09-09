@@ -1,6 +1,17 @@
+/**
+ * ariwf3_blogoop_eventsSignIn represents a namespace for the sign in events 
+ * 
+ * @namespace ariwf3_blogoop_eventsSignIn
+ */
 const ariwf3_blogoop_eventsSignIn = {
 
-    getUserInfos: function () {
+    /**
+     * getUserInfos
+     * 
+     * Contains each user's form information (field, value and feedback)
+     * 
+     */
+    getUserInfos: () => {
         let formTags = {
             email: {
                 field: $('#email'),
@@ -15,31 +26,54 @@ const ariwf3_blogoop_eventsSignIn = {
         };
         return formTags;
     },
-
+    /**
+     * removeErrors
+     * 
+     * removes the error classes and error message and prevents them from repeating themselves
+     * 
+     * @param {jQuery} $field the html tag which contains the form field
+     * @param {jQuery} $feedback the html tag which contains the feedback message
+     */
     removeErrors: function (field, feedback) {
         field.removeClass("invalid");
         feedback.remove();
         field.removeClass("valid");
     },
-
-    showValidPopup: function () {
+    /**
+     * showValidPopup
+     * 
+     * Verifies if all fields have the "valid" class and fades in a success feedback
+     */
+    showValidPopup: () => {
         let userInfos = ariwf3_blogoop_eventsSignIn.getUserInfos();
         if (userInfos.email.field.hasClass("valid") && userInfos.password.field.hasClass("valid")) {
             $(".popup_valid_form").fadeIn('slow');
         }
     },
-
+    /**
+     * regexMail
+     * 
+     * Contains a regular expression to check the mail
+     */
     regexMail: /^[a-z0-9._-]+@[a-z0-9._-]{2,12}\.[a-z]{2,4}$/,
-
-    verifiyAllFieldsValidity: function () {
+    /**
+     * verifiyAllFieldsValidity
+     * 
+     * Verifies if the form has no error and replace the error feedback by a success feedback
+     */
+    verifiyAllFieldsValidity: () => {
         let userInfos = ariwf3_blogoop_eventsSignIn.getUserInfos();
 
         if (userInfos.email.field.hasClass("valid") && userInfos.email.feedback.hasClass("valid_feedback") && userInfos.password.field.hasClass("valid") && userInfos.password.feedback.hasClass("valid_feedback")) {
             $(".popup_error_form").replaceWith("<p class='popup_valid_form'>On a l'air bon !</p>");
         }
     },
-
-    verifyEmailValidity: function () {
+    /**
+     * verifyEmailValidity
+     * 
+     * Verifies the mail field and toggles between valid or negative feedback
+     */
+    verifyEmailValidity: () => {
         let userInfos = ariwf3_blogoop_eventsSignIn.getUserInfos();
 
         if (userInfos.email.value.length === 0 ) {
@@ -55,13 +89,15 @@ const ariwf3_blogoop_eventsSignIn = {
             userInfos.email.field.addClass("valid");
             userInfos.email.field.parent().append("<p class='valid_feedback'>Format d'email valide, bonne visite ! <i class='fas fa-handshake'></i></p>");
             ariwf3_blogoop_eventsSignIn.showValidPopup();
-            /* if (userInfos.email.field.hasClass("valid") && userInfos.password.field.hasClass("valid")) {
-                $(".popup_valid_form").fadeIn('slow');
-            } */
         }
     },
 
-    verifyPasswordValidity: function () {
+    /**
+     * verifyPasswordValidity
+     * 
+     * Verifies the password field and toggles between valid or negative feedback
+     */
+    verifyPasswordValidity: () => {
         let userInfos = ariwf3_blogoop_eventsSignIn.getUserInfos();
 
         if (userInfos.password.value.length === 0 || userInfos.password.value.length < 4 || userInfos.password.value.length > 30)
@@ -79,7 +115,12 @@ const ariwf3_blogoop_eventsSignIn = {
         }
     },
 
-    checkEmailOnKeyup: function () {
+    /**
+    * checkEmailOnKeyup
+    * 
+    * Callback function for the keyup event listener, verifies the mail field
+    */
+    checkEmailOnKeyup: () => {
 
         let userInfos = ariwf3_blogoop_eventsSignIn.getUserInfos();
 
@@ -90,7 +131,12 @@ const ariwf3_blogoop_eventsSignIn = {
         ariwf3_blogoop_eventsSignIn.verifiyAllFieldsValidity()
     },
     
-    checkPasswordOnKeyup: function () {
+    /**
+     * checkPasswordOnKeyup
+     * 
+     * Callback function for the keyup event listener, verifies the password field
+     */
+    checkPasswordOnKeyup: () => {
 
         let userInfos = ariwf3_blogoop_eventsSignIn.getUserInfos();
 

@@ -17,7 +17,11 @@ private $databaseSourceName = 'mysql:host=myHostName;dbname=blog_oop';
 private $databaseLogin      = 'myLogin';
 private $databasePassword   = 'myPassword';
 ```
-* Importer le fichier sql dans le dossier nommé "sql" pour construire la BDD.
+* Importer un des fichiers sql dans le dossier nommé "sql" pour construire la BDD.
+```
+"blog_oop_empty.sql" contient la base vide avec un deux utilisateurs(un admin et un user)
+"blog_oop_sample.sql" contient des données d'exemple en plus des deux utilisateurs
+```
 
 ### Gestion des classes
 Création d'un autoloader pour charger les classes automatiquement.

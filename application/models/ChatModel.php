@@ -50,7 +50,9 @@ class ChatModel extends Database {
     }
 
     /**
-     * getLastMessage Returns the last message according to the id($lastId) of the last message received
+     * getLastMessage 
+     * 
+     * Returns the last message according to the id($lastId) of the last message received
      *
      * @param  int $lastId
      *
