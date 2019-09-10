@@ -19,7 +19,7 @@ private $databasePassword   = 'myPassword';
 ```
 * Importer un des fichiers sql dans le dossier nommé "sql" pour construire la BDD.
 ```
-"blog_oop_empty.sql" contient la base vide avec un deux utilisateurs(un admin et un user)
+"blog_oop_empty.sql" contient la base vide avec deux utilisateurs(un admin et un user)
 "blog_oop_sample.sql" contient des données d'exemple en plus des deux utilisateurs
 utilisateur admin@admin.com password : admin
 utilisateur john@john.com password : aaaa
