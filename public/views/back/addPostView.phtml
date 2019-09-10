@@ -32,7 +32,9 @@ ob_start(); ?>
                     foreach ($errorField as $error ) { ?>
                         <li><?= htmlspecialchars($error) ?></li>
                     <?php }
-                } ?>
+                }
+                unset($_SESSION['userAddPost']['errors']);
+                ?>
             </ul>
         </div>
         <?php endif ?>

@@ -33,7 +33,9 @@ ob_start(); ?>
                         foreach ($errorField as $error ) { ?>
                             <li><?= htmlspecialchars($error) ?></li>
                         <?php }
-                    } ?>
+                    } 
+                    unset($_SESSION['userSignIn']['errors']) 
+                    ?>
                 </ul>
             </div>
             <?php endif ?>

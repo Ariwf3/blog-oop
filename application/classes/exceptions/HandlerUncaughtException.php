@@ -2,8 +2,6 @@
 
 namespace Ariwf3\Blog_oop\Application\Classes\Exceptions;
 
-// use Ariwf3\Blog_oop\Application\Classes\Exceptions\HandlerUncaughtException;
-
 
 class HandlerUncaughtException {
 

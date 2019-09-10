@@ -48,7 +48,9 @@ ob_start(); ?>
                         foreach ($errorField as $error ) { ?>
                             <li><?= $error ?></li>
                         <?php }
-                    } ?>
+                    } 
+                    unset($_SESSION['userSignUp']['errors']) 
+                    ?>
                 </ul>
             </div>
             <?php endif ?>

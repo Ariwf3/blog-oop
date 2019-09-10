@@ -19,8 +19,8 @@ ob_start(); ?>
         
         <!-- ERRORS -->
         <?php 
-            if (isset($_GET['error']) && $_GET['error'] == 1) : 
-            $errorsList = unserialize($_GET['errorslist']);
+            if ( isset($_SESSION['userEditPost']['errors']) ) : 
+            $errorsList = $_SESSION['userEditPost']['errors'];
         ?>
         <div class="popup_error_form">
             <span>Envoi impossible veuillez vérifier les champs suivants :
@@ -31,7 +31,9 @@ ob_start(); ?>
                     foreach ($errorField as $error ) { ?>
                         <li><?= htmlspecialchars($error) ?></li>
                     <?php }
-                } ?>
+                }
+                unset($_SESSION['userEditPost']['errors']);
+                ?>
             </ul>
         </div>
         <?php endif ?>

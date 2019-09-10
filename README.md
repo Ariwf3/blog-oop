@@ -21,6 +21,8 @@ private $databasePassword   = 'myPassword';
 ```
 "blog_oop_empty.sql" contient la base vide avec un deux utilisateurs(un admin et un user)
 "blog_oop_sample.sql" contient des données d'exemple en plus des deux utilisateurs
+utilisateur admin@admin.com password : admin
+utilisateur john@john.com password : aaaa
 ```
 
 ### Gestion des classes

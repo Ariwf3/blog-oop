@@ -136,12 +136,11 @@ class PostController {
             header("Location: index.php?action=account&id=$userId");
 
         } else {
-            $errorsList = $this->getErrors();
-            $serializeErrorsList = serialize($errorsList);
-            // $userId = $_SESSION['user']['id'];
-       
-            header("Location:index.php?id=$postId&action=editPostView&error=1&errorslist=$serializeErrorsList");
-         }
+            
+            $_SESSION['userEditPost']['errors'] = $this->getErrors();
+
+            header("Location:index.php?id=$postId&action=editPostView");
+        }
     }
 
     /**

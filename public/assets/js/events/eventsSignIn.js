@@ -109,9 +109,6 @@ const ariwf3_blogoop_eventsSignIn = {
             userInfos.password.field.addClass("valid");
             userInfos.password.field.parent().append("<p class='valid_feedback'>Mot de passe conforme !  <i class='fas fa-mug-hot'></i></p>");
             ariwf3_blogoop_eventsSignIn.showValidPopup();
-            /* if (userInfos.email.field.hasClass("valid") && userInfos.password.field.hasClass("valid")) {
-                $(".popup_valid_form").fadeIn('slow');
-            } */
         }
     },
 
