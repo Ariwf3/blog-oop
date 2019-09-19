@@ -26,10 +26,12 @@ utilisateur john@john.com password : aaaa
 ```
 
 ### Gestion des classes
-Création d'un autoloader pour charger les classes automatiquement.
+* Création d'un autoloader pour charger les classes automatiquement.
+* Création d'une classe Directory contenant les chemins physiques et namespaces sous forme de constantes pour ne pas surcharger l'autoloader
+* Création d'une classe Database pour gérer la connexion à la BDD via la classe PDO et les méthodes relatives à celle-ci.
 
 ### Gestion des routes
-Utilisation d'un contrôleur frontal pour gérer les routes en passant par un même index.
+Utilisation d'un contrôleur frontal et d'une table de routage pour gérer les URL en passant par un unique point d'entrée (approche centralisée).
 
 ### Gestion des erreurs
 Création d'exceptions personnalisées et conversion des erreurs PHP en exceptions.
